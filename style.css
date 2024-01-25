@@ -1,0 +1,104 @@
+#logo {
+  width: 30%;
+  margin: 0px 30px;
+}
+
+#menu {
+  background-color: black;
+  color: wheat;
+}
+
+#menu ul {
+  background-color: black;
+  color: wheat;
+  display: flex;
+  margin-top: 0px;
+  padding: 0px;
+}
+
+#menu ul li {
+  margin: 10px 60px;
+}
+
+main {
+  display: flex;
+}
+
+#mainvisual {
+  width: 100%;
+}
+
+#books {
+  border-left: 3px solid black;
+  border-bottom: 2px solid black;
+  margin: 0px 0px 16px 0px;
+}
+
+#left {
+  border: 5px solid blue;
+  width: 80%;
+}
+
+.leftmain {
+  margin-left: 10px;
+}
+
+.leftmain p {
+  margin: 0px 0px 16px 10px;
+}
+
+#article {
+  margin: 16px 20px;
+}
+
+#leftflex {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgba(192, 192, 192, 0.50);
+  padding: 4%;
+}
+
+.leftflexitme {
+  width: 23%;
+  margin: 5px;
+}
+
+.leftflexitme p {
+  font-size: 18px;
+  text-align: center;
+  margin: 5px;
+}
+
+.booksimg {
+  width: 100%;
+}
+
+#right {
+  border: 5px solid red;
+  width: 20%;
+}
+
+.rightmain {
+  margin-right: 20px;
+}
+
+.topiX {
+  border-bottom: 3px solid;
+  border-color: rgba(192, 192, 192, 0.50);
+}
+
+li {
+  list-style: none;
+}
+
+footer {
+  background-color: black;
+  color: wheat;
+  margin: 0px;
+  padding: 5px;
+  text-align: center;
+}
+
+footer p {
+  margin: 5px;
+}
