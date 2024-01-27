@@ -1,42 +1,22 @@
+<!-- regist_confirm.php -->
 <?php
+session_start();
 
-// 変数の中身を確認
-// var_dump($_POST);
-// $familyName = isset($_POST['familyName']) ? $_POST['familyName'] : '';
-// var_dump($familyName);
-
-// アカウント登録画面からのデータを取得
-$familyName = $_POST["familyName"];
-$lastName = $_POST["lastName"];
-$familyNameKana = $_POST["familyNameKana"];
-$lastNameKana = $_POST["lastNameKana"];
-$mail = $_POST["mail"];
-$password = $_POST["password"];
-$gender = ($_POST["gender"] == 0) ? "男" : "女";
-$postalCode = $_POST["postalCode"];
-$prefecture = $_POST["prefecture"];
-$address1 = $_POST["address1"];
-$address2 = $_POST["address2"];
-$authority = ($_POST["authority"] == 0) ? "一般" : "管理者";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $familyName = $_POST['familyName'];
-    // ひらがなと漢字のみを許可する正規表現
-    $pattern = '/^[\p{Hiragana}\x{4E00}-\x{9FAF}ー－]+$/u';
-
-
-    if (!preg_match($pattern, $familyName)) {
-        // エラー処理（アルファベットが含まれている場合）
-        echo "名前（姓）にはひらがなと漢字のみを入力してください。";
-    } else {
-        // 正常な処理
-        // 他の処理を続ける
-    }
-}
+// POST データから値を取得
+$familyName = $_POST['familyName'];
+$lastName = $_POST['lastName'];
+$familyNameKana = $_POST['familyNameKana'];
+$lastNameKana = $_POST['lastNameKana'];
+$mail = $_POST['mail'];
+$password = $_POST['password'];
+$gender = ($_POST['gender'] == '0') ? '男' : '女';
+$postalCode = $_POST['postalCode'];
+$prefecture = $_POST['prefecture'];
+$address1 = $_POST['address1'];
+$address2 = $_POST['address2'];
+$authority = ($_POST['authority'] == '0') ? '一般' : '管理者';
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -126,6 +106,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form method="post" action="regist_complete.php">
           <!-- 各確認要素 -->
           <button type="submit">登録する</button>
+          <input type="hidden" name="familyName" value="<?php echo $_POST['familyName']; ?>">
+          <input type="hidden" name="lastName" value="<?php echo $_POST['lastName']; ?>">
+          <input type="hidden" name="familyNameKana" value="<?php echo $_POST['familyNameKana']; ?>">
+          <input type="hidden" name="lastNameKana" value="<?php echo $_POST['lastNameKana'];?>">
+          <input type="hidden" name="mail" value="<?php echo $_POST['mail']; ?>">
+          <input type="hidden" name="password" value="<?php echo $_POST['password']; ?>">
+          <input type="hidden" name="gender" value="<?php echo $_POST['gender']; ?>">
+          <input type="hidden" name="postalCode" value="<?php echo $_POST['postalCode']; ?>">
+          <input type="hidden" name="prefecture" value="<?php echo $_POST['prefecture']; ?>">
+          <input type="hidden" name="address1" value="<?php echo $_POST['address1']; ?>">
+          <input type="hidden" name="address2" value="<?php echo $_POST['address2']; ?>">
+          <input type="hidden" name="authority" value="<?php echo $_POST['authority']; ?>">
         </form>
 
         <form method="post" action="regist.php">
@@ -143,41 +135,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <input type="hidden" name="address2" value="<?php echo isset($_POST['address2']) ? htmlspecialchars($_POST['address2'], ENT_QUOTES) : ''; ?>">
           <input type="hidden" name="authority" value="<?php echo isset($_POST['authority']) ? htmlspecialchars($_POST['authority'], ENT_QUOTES) : ''; ?>">
           <button type="submit">前に戻る</button>
+
+          <!-- htmlspecialchars は、HTMLエスケープ処理 PHP関数　これを使うと、HTML タグや特殊文字をエスケープする。 -->
+          <!-- 主なパラメータ： -->
+          <!-- $string: エスケープしたい文字列。
+          $flags: エンティティ変換のモードを指定するフラグ。デフォルトは ENT_COMPAT | ENT_HTML401 です。
+          $encoding: 変換に使用する文字エンコーディング。デフォルトは ini_get("default_charset") です。
+          $double_encode: 二重エンコードを防ぐためのフラグ。デフォルトは true です。 -->
         </form>
-      </div>
-    </div>
-
-
-    </div>
-
-
-    <div id="right">
-      <div class="rightmain">
-        <h2 class="topiX">人気記事</h2>
-        <ul>
-          <li>PHPオススメ本</li>
-          <li>PHP MyAdminの使い方</li>
-          <li>いま人気のエディタTops</li>
-          <li>HTMLの基礎</li>
-        </ul>
-      </div>
-      <div class="rightmain">
-        <h2 class="topiX">オススメリンク</h2>
-        <ul>
-          <li>ﾃﾞｨｰｱｲﾜｰｸｽ株式会社</li>
-          <li>XAMPPダウンロード</li>
-          <li>Eclipseダウンロード</li>
-          <li>Braketsのダウンロード</li>
-        </ul>
-      </div>
-      <div class="rightmain">
-        <h2 class="topiX">カテゴリ</h2>
-        <ul>
-          <li>HTML</li>
-          <li>PHP</li>
-          <li>MySQL</li>
-          <li>JavaScript</li>
-        </ul>
       </div>
     </div>
   </main>

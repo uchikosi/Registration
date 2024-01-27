@@ -67,6 +67,12 @@ function validateNameKana(input, isLastNameKana) {
 function validateEmail(input) {
   // メールアドレスの正規表現
   const emailPattern = /^[a-zA-Z0-9!%-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
+  // ^: 文字列の先頭を示します。
+  // [a - zA - Z0 - 9! % -] +: 英字（大文字または小文字）、数字、および一部の特殊文字（!、%、-）が1回以上繰り返されることを示します。これは、メールアドレスのローカル部分（@の前）を表します。
+  // @: メールアドレスのローカル部分とドメイン部分を区切る「@」記号です。
+  // [a - zA - Z0 - 9 -] +: 英字（大文字または小文字）、数字、およびハイフンが1回以上繰り返されることを示します。これは、メールアドレスのドメイン部分の最初の部分を表します。
+
+  // $: 文字列の末尾を示します。
 
   // 入力された値
   const inputValue = input.value.trim();  // trim()を使って前後の空白を削除
@@ -87,8 +93,6 @@ function validateEmail(input) {
     input.setCustomValidity("メールアドレスは必須です。");
   }
 }
-
-
 
 // validateForm 関数内
 function validateForm() {
@@ -111,10 +115,6 @@ function validateForm() {
   // バリデーションが成功した場合はフォームをサブミット
   return isFormValid;
 }
-
-
-
-
 
 // <!-- 住所（市町村、番地）のバリデーション関数 -->
 function validateAddress(input) {

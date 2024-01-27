@@ -41,7 +41,6 @@
             <?php if (isset($_POST['lastName'])) echo 'value="' . htmlspecialchars($_POST['lastName'], ENT_QUOTES) . '"'; ?>>
           <br>
 
-
           <label for="familyNameKana">カナ（姓）:</label>
           <input type="text" id="familyNameKana" name="familyNameKana" maxlength="10" oninput="validateNameKana(this, true)" placeholder="カタカナ" <?php if (isset($_POST['familyNameKana'])) echo 'value="' . htmlspecialchars($_POST['familyNameKana'], ENT_QUOTES) . '"'; ?>>
           <br>
@@ -56,7 +55,6 @@
 
           <label for="password">パスワード:</label>
           <input type="password" id="password" name="password" minlength="3" maxlength="10"  required  placeholder="半角英数字 3~10文字">
-
           <br>
 
           <label>性別:</label>
