@@ -37,17 +37,17 @@
           <!-- validateName(this, true)"　validateNameの引数をLastNameになっているためelseの時に発火する -->
 
           <label for="lastName">名前（名）:</label>
-          <input type="text" id="lastName" name="lastName" maxlength="10" autofocus oninput="validateName(this, false)" placeholder="漢字orひらがな"
+          <input type="text" id="lastName" name="lastName" maxlength="10" autofocus oninput="validateName(this, false)"  placeholder="漢字orひらがな"
             <?php if (isset($_POST['lastName'])) echo 'value="' . htmlspecialchars($_POST['lastName'], ENT_QUOTES) . '"'; ?>>
           <br>
 
 
           <label for="familyNameKana">カナ（姓）:</label>
-          <input type="text" id="familyNameKana" name="familyNameKana" maxlength="10" pattern="[\u30A1-\u30F6]*" required placeholder="カタカナ" <?php if (isset($_POST['familyNameKana'])) echo 'value="' . htmlspecialchars($_POST['familyNameKana'], ENT_QUOTES) . '"'; ?>>
+          <input type="text" id="familyNameKana" name="familyNameKana" maxlength="10" oninput="validateNameKana(this, true)" placeholder="カタカナ" <?php if (isset($_POST['familyNameKana'])) echo 'value="' . htmlspecialchars($_POST['familyNameKana'], ENT_QUOTES) . '"'; ?>>
           <br>
 
           <label for="lastNameKana">カナ（名）:</label>
-          <input type="text" id="lastNameKana" name="lastNameKana" maxlength="10" pattern="[\u30A1-\u30F6]*" required placeholder="カタカナ" <?php if (isset($_POST['lastNameKana'])) echo 'value="' . htmlspecialchars($_POST['lastNameKana'], ENT_QUOTES) . '"'; ?>>
+          <input type="text" id="lastNameKana" name="lastNameKana" maxlength="10" pattern="[\u30A1-\u30F6]*" oninput="validateNameKana(this, false)" placeholder="カタカナ" <?php if (isset($_POST['lastNameKana'])) echo 'value="' . htmlspecialchars($_POST['lastNameKana'], ENT_QUOTES) . '"'; ?>>
           <br>
 
           <label for="mail">メールアドレス:</label>
