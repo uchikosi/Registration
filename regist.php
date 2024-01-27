@@ -47,11 +47,11 @@
           <br>
 
           <label for="lastNameKana">カナ（名）:</label>
-          <input type="text" id="lastNameKana" name="lastNameKana" maxlength="10" pattern="[\u30A1-\u30F6]*" oninput="validateNameKana(this, false)" placeholder="カタカナ" <?php if (isset($_POST['lastNameKana'])) echo 'value="' . htmlspecialchars($_POST['lastNameKana'], ENT_QUOTES) . '"'; ?>>
+          <input type="text" id="lastNameKana" name="lastNameKana" maxlength="10" oninput="validateNameKana(this, false)" placeholder="カタカナ" <?php if (isset($_POST['lastNameKana'])) echo 'value="' . htmlspecialchars($_POST['lastNameKana'], ENT_QUOTES) . '"'; ?>>
           <br>
 
           <label for="mail">メールアドレス:</label>
-          <input type="text" id="mail" name="mail" maxlength="100" required oninput="validateEmail(this)" <?php if (isset($_POST['mail'])) echo 'value="' . htmlspecialchars($_POST['mail'], ENT_QUOTES) . '"'; ?>>
+          <input type="text" id="mail" name="mail" maxlength="100" oninput="validateEmail(this)" <?php if (isset($_POST['mail'])) echo 'value="' . htmlspecialchars($_POST['mail'], ENT_QUOTES) . '"'; ?>>
           <br>
 
           <label for="password">パスワード:</label>
