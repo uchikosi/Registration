@@ -4,91 +4,7 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="style.css">
   <title>アカウント登録フォーム</title>
-
-
-<script>
-    function validateName(input, isLastName) {
-    // 入力された値
-    const inputValue = input.value.trim();  // trim()を使って前後の空白を削除
-
-    // ひらがな、漢字の正規表現
-    const japaneseTextPattern = /^[\u4E00-\u9FFF\u3040-\u309Fー]*$/;
-    // \u4E00-\u9FFF: 一般的な漢字
-    // \u3040-\u309F: ひらがな
-
-    // 入力が空でない場合のみ正規表現と比較
-    if (inputValue !== '') {
-        if (!japaneseTextPattern.test(inputValue)) {
-            // エラーメッセージを表示
-            console.log("ひらがな、漢字のみ入力できます。");
-            input.setCustomValidity("ひらがな、漢字のみ入力できます。");
-        } else {
-            // エラーメッセージをクリア
-            console.log("エラーメッセージをクリア");
-            input.setCustomValidity("");
-        }
-    } else {
-        // 入力が空の場合
-        if (isLastName) {
-            // 名前（姓）の検証
-            console.log("名前（姓）は必須です。");
-            input.setCustomValidity("名前（姓）は必須です。");
-        } else if (isfamilyName) {
-            // 名前（名）の検証
-            console.log("名は必須です。");
-            input.setCustomValidity("名は必須です。");
-        }
-    }
-}
-
-
-
-
-    // <!-- メールアドレスのバリデーション関数 -->
-    function validateEmail(input) {
-      // メールアドレスの正規表現
-      const emailPattern = /^[a-zA-Z0-9!%-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
-
-      // 入力された値
-      const emailValue = input.value;
-
-      // 正規表現と比較
-      if (!emailPattern.test(emailValue)) {
-        // エラーメッセージを表示
-        input.setCustomValidity("正しいメールアドレスの形式で入力してください。");
-      } else {
-        // エラーメッセージをクリア
-        input.setCustomValidity("");
-      }
-    }
-
-    // <!-- 住所（市町村、番地）のバリデーション関数 -->
-    function validateAddress(input) {
-      // 入力された値
-      const addressValue = input.value;
-
-      // ひらがな、カタカナ、漢字、数字、ハイフン、スペースの正規表現
-      const addressPattern = /^[ぁ-んァ-ン一-龠0-9０-９ー－\s]+$/;
-      // ^: 文字列の先頭を表します。
-      //ぁ-ん: ひらがな
-      // ァ-ン: カタカナ
-      // 一-龠: 漢字（一般的な漢字）
-      // 0-9: 数字
-      // ０-９: 全角数字
-      // ー－: ハイフン
-      // $: 文字列の末尾を表します。
-
-      // 正規表現と比較
-      if (!addressPattern.test(addressValue)) {
-          // エラーメッセージを表示
-          input.setCustomValidity("ひらがな、カタカナ、漢字、数字、ハイフン、スペースのみ入力できます。");
-      } else {
-          // エラーメッセージをクリア
-          input.setCustomValidity("");
-      }
-  }
-</script>
-
+  <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
   <header>
@@ -113,14 +29,15 @@
       <div id="left">
         <h1 iD="books"></h1>
         <h1>アカウント登録フォーム</h1>
-        <form method="post" action="regist_confirm.php">
+        <form method="post" action="regist_confirm.php" onsubmit="return validateForm()">
           <label for="familyName">名前（姓）:</label>
           <input type="text" id="familyName" name="familyName" maxlength="10" autofocus oninput="validateName(this, true)" placeholder="漢字orひらがな"
             <?php if (isset($_POST['familyName'])) echo 'value="' . htmlspecialchars($_POST['familyName'], ENT_QUOTES) . '"'; ?>>
           <br>
+          <!-- validateName(this, true)"　validateNameの引数をLastNameになっているためelseの時に発火する -->
 
           <label for="lastName">名前（名）:</label>
-          <input type="text" id="lastName" name="lastName" maxlength="10" oninput="validateName(this, false)"  autofocus placeholder="漢字orひらがな"
+          <input type="text" id="lastName" name="lastName" maxlength="10" autofocus oninput="validateName(this, false)" placeholder="漢字orひらがな"
             <?php if (isset($_POST['lastName'])) echo 'value="' . htmlspecialchars($_POST['lastName'], ENT_QUOTES) . '"'; ?>>
           <br>
 
@@ -178,7 +95,9 @@
               <option value="1" <?php if (isset($_POST['authority']) && $_POST['authority'] == '1') echo 'selected'; ?>>管理者</option>
           </select>
           <br>
-          <!-- pattern=""はそれぞれの項目の入力可能な文字を制限する　正規表現 -->
+
+          <!-- oninput 入力フィールドに変更を加えるたびにjsに設定したバリデーションが行われる -->
+          <!-- pattern属性 それぞれの項目の入力可能な文字を制限する　正規表現 -->
 
           <button type="submit">確認する</button>
         </form>
