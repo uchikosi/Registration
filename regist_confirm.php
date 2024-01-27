@@ -44,6 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="style.css">
   <title>アカウント登録確認画面</title>
+  <script>
+  </script>
 </head>
 <body>
   <header>

@@ -7,6 +7,43 @@
 
 
 <script>
+    function validateName(input, isLastName) {
+    // 入力された値
+    const inputValue = input.value.trim();  // trim()を使って前後の空白を削除
+
+    // ひらがな、漢字の正規表現
+    const japaneseTextPattern = /^[\u4E00-\u9FFF\u3040-\u309Fー]*$/;
+    // \u4E00-\u9FFF: 一般的な漢字
+    // \u3040-\u309F: ひらがな
+
+    // 入力が空でない場合のみ正規表現と比較
+    if (inputValue !== '') {
+        if (!japaneseTextPattern.test(inputValue)) {
+            // エラーメッセージを表示
+            console.log("ひらがな、漢字のみ入力できます。");
+            input.setCustomValidity("ひらがな、漢字のみ入力できます。");
+        } else {
+            // エラーメッセージをクリア
+            console.log("エラーメッセージをクリア");
+            input.setCustomValidity("");
+        }
+    } else {
+        // 入力が空の場合
+        if (isLastName) {
+            // 名前（姓）の検証
+            console.log("名前（姓）は必須です。");
+            input.setCustomValidity("名前（姓）は必須です。");
+        } else if (isfamilyName) {
+            // 名前（名）の検証
+            console.log("名は必須です。");
+            input.setCustomValidity("名は必須です。");
+        }
+    }
+}
+
+
+
+
     // <!-- メールアドレスのバリデーション関数 -->
     function validateEmail(input) {
       // メールアドレスの正規表現
@@ -78,14 +115,15 @@
         <h1>アカウント登録フォーム</h1>
         <form method="post" action="regist_confirm.php">
           <label for="familyName">名前（姓）:</label>
-          <input type="text" id="familyName" name="familyName" maxlength="10" pattern="[\u4E00-\u9FFF\u3040-\u309Fー]*" required autofocus placeholder="漢字orひらがな"
-          <?php if (isset($_POST['familyName'])) echo 'value="' . htmlspecialchars($_POST['familyName'], ENT_QUOTES) . '"'; ?>>
+          <input type="text" id="familyName" name="familyName" maxlength="10" autofocus oninput="validateName(this, true)" placeholder="漢字orひらがな"
+            <?php if (isset($_POST['familyName'])) echo 'value="' . htmlspecialchars($_POST['familyName'], ENT_QUOTES) . '"'; ?>>
           <br>
 
           <label for="lastName">名前（名）:</label>
-          <input type="text" id="lastName" name="lastName" maxlength="10" pattern="[\u4E00-\u9FFF\u3040-\u309Fー]*" required autofocus placeholder="漢字orひらがな"
-          <?php if (isset($_POST['lastName'])) echo 'value="' . htmlspecialchars($_POST['lastName'], ENT_QUOTES) . '"'; ?>>
+          <input type="text" id="lastName" name="lastName" maxlength="10" oninput="validateName(this, false)"  autofocus placeholder="漢字orひらがな"
+            <?php if (isset($_POST['lastName'])) echo 'value="' . htmlspecialchars($_POST['lastName'], ENT_QUOTES) . '"'; ?>>
           <br>
+
 
           <label for="familyNameKana">カナ（姓）:</label>
           <input type="text" id="familyNameKana" name="familyNameKana" maxlength="10" pattern="[\u30A1-\u30F6]*" required placeholder="カタカナ" <?php if (isset($_POST['familyNameKana'])) echo 'value="' . htmlspecialchars($_POST['familyNameKana'], ENT_QUOTES) . '"'; ?>>
