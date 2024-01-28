@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="css/shareStyle.css">
   <title>アカウント登録フォーム</title>
   <script type="text/javascript" src="script.js"></script>
 </head>

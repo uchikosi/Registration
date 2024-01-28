@@ -22,7 +22,7 @@ $authority = ($_POST['authority'] == '0') ? '一般' : '管理者';
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="css/shareStyle.css">
   <title>アカウント登録確認画面</title>
   <script>
   </script>

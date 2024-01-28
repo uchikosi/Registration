@@ -1,0 +1,39 @@
+#logo {
+  width: 30%;
+  margin: 0px 30px;
+}
+
+#menu {
+  background-color: black;
+  color: wheat;
+}
+
+#menu ul {
+  background-color: black;
+  color: wheat;
+  display: flex;
+  margin-top: 0px;
+  padding: 0px;
+}
+
+#menu ul li {
+  margin: 10px 60px;
+}
+
+main {}
+
+li {
+  list-style: none;
+}
+
+footer {
+  background-color: black;
+  color: wheat;
+  margin: 0px;
+  padding: 5px;
+  text-align: center;
+}
+
+footer p {
+  margin: 5px;
+}

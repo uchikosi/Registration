@@ -34,7 +34,8 @@ try {
 
   if ($result) {
     // データベースへの登録が成功した場合に実行される。$result が true の場合メッセージが出力されます。
-    echo "データベースへの登録が成功しました。";
+    // echo "データベースへの登録が完了しました。";
+    $success = "アカウントの登録が完了しました。";
   } else {
     // データベースへの登録が失敗した場合に実行される。この場合、$stmt->errorInfo() を使用してエラー情報を取得し、エラーコードとエラーメッセージを表示します。
     // $errorInfo = $stmt->errorInfo();
@@ -44,8 +45,9 @@ try {
     // SQLSTATE エラーコード: SQL 標準に基づくエラーコードで、エラーの種類を示します。$errorInfo[0] に格納されます。
 
     // エラーメッセージ ($errorInfo[2]): データベースエラーに関する説明的なメッセージです。エラーが発生した場合、このメッセージに詳細な情報が含まれることがあります。
+    // echo "データベースへの登録が失敗しました。";
 
-    echo "データベースへの登録が失敗しました。";
+    $failure = "エラーが発生したためアカウント登録できません。";
 
     // echo "データベースへの登録が失敗しました。エラーコード: " . $errorInfo[1] . "、エラーメッセージ: " . $errorInfo[2];
   }
@@ -63,8 +65,29 @@ try {
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <title>アカウント登録確認画面</title>
+  <link rel="stylesheet" type="text/css" href="css/shareStyle.css">
+  <title>アカウント登録完了画面</title>
+  <style>
+    div {
+      text-align: center; /* 中央寄せ */
+      margin:  20px;
+    }
+    #databaseRegistrationResults {
+    padding: 10px;              /* 余白指定 */
+    background-color:  #ddd;    /* 背景色指定 */
+    height: 150px;              /* 高さ指定 */
+    text-align:  center;        /* 中央寄せ */
+    }
+
+    div
+
+  #topBack {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f8f8f8;
+        }
+    </style>
 </head>
 <body>
   <header>
@@ -85,6 +108,29 @@ try {
       </ul>
     </div>
   </header>
+  <main>
+    <div>
+      <h1 id="databaseRegistrationResults">
+        <?php
+        if (isset($success)) {
+              echo $success;
+              echo "<br>";  // 成功メッセージ
+          }
+
+          if (isset($failure)) {
+              echo $failure;
+              echo "<br>";  // 失敗メッセージ
+          }
+        ?>
+      </h1>
+    </div>
+
+    <div>
+        <p>
+            <a href="http://localhost:8888/Registration/index.php" id = "topBack" >TOPページへ戻る</a>
+        </p>
+    </div>
+  </main>
   <footer>
     <p>Copytifht D.I.Worksl D.I.blog is the one which provides A to Z about programming</p>
   </footer>
