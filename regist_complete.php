@@ -1,9 +1,4 @@
-<!-- // regist_complete.php -->
 <?php
-// var_dump($_POST);
-// $familyName = isset($_POST['familyName']) ? $_POST['familyName'] : '';
-// var_dump($familyName);
-
 // パスワードをハッシュ化
 $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
 // 現在の日時を取得
@@ -28,7 +23,7 @@ try {
     $_POST['address1'],
     $_POST['address2'],
     $_POST['authority'],
-    $delete_flag,
+    $delete_flag,    //削除の有無
     $registeredTime // 現在の日時を使用
   ]);
 
@@ -38,24 +33,11 @@ try {
     $success = "アカウントの登録が完了しました。";
   } else {
     // データベースへの登録が失敗した場合に実行される。この場合、$stmt->errorInfo() を使用してエラー情報を取得し、エラーコードとエラーメッセージを表示します。
-    // $errorInfo = $stmt->errorInfo();
-    // PHP PDO (PHP Data Objects) ドライバを使用して実行された直近のデータベース操作に関するエラー情報を返す PDOStatement オブジェクトのメソッドです。このメソッドが返す情報は、通常、エラーコード、SQLSTATE エラーコード、エラーメッセージの3つの要素からなる配列です。
-    // エラーコード ($errorInfo[1]): データベースエラーを表す整数コードです。異なるデータベースでは異なるエラーコードが使用されることがあります。成功した場合は 0 です。
-
-    // SQLSTATE エラーコード: SQL 標準に基づくエラーコードで、エラーの種類を示します。$errorInfo[0] に格納されます。
-
-    // エラーメッセージ ($errorInfo[2]): データベースエラーに関する説明的なメッセージです。エラーが発生した場合、このメッセージに詳細な情報が含まれることがあります。
-    // echo "データベースへの登録が失敗しました。";
-
     $failure = "エラーが発生したためアカウント登録できません。";
-
-    // echo "データベースへの登録が失敗しました。エラーコード: " . $errorInfo[1] . "、エラーメッセージ: " . $errorInfo[2];
   }
 } catch (PDOException $e) {
   // PDOExceptionが発生した場合にキャッチされる部分です。これは、データベースへの接続やクエリ実行などで発生する可能性のある例外です。エラーメッセージが表示されます。
   echo "データベースへの登録が失敗しました。";
-  // echo "データベースへの登録が失敗しました。エラーメッセージ: " . $e->getMessage();
-  // getMessage();例外が発生すると、それに関する情報を含む Exception オブジェクトが生成されます。その際、例外オブジェクトにはエラーに関する詳細な情報（エラーメッセージなど）が含まれています。getMessage() メソッドは、これらの情報の中からエラーメッセージ部分を取り出します。
 }
 ?>
 
@@ -78,15 +60,12 @@ try {
     height: 150px;              /* 高さ指定 */
     text-align:  center;        /* 中央寄せ */
     }
-
-    div
-
-  #topBack {
-            text-align: center;
-            padding: 20px;
-            border: 1px solid #ccc;
-            background-color: #f8f8f8;
-        }
+    #topBack {
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color: #f8f8f8;
+    }
     </style>
 </head>
 <body>
@@ -113,13 +92,13 @@ try {
       <h1 id="databaseRegistrationResults">
         <?php
         if (isset($success)) {
-              echo $success;
-              echo "<br>";  // 成功メッセージ
+              echo $success;// 成功メッセージ
+              echo "<br>";
           }
 
           if (isset($failure)) {
-              echo $failure;
-              echo "<br>";  // 失敗メッセージ
+              echo $failure;// 失敗メッセージ
+              echo "<br>";
           }
         ?>
       </h1>

@@ -69,12 +69,38 @@
           <br>
 
           <label for="prefecture">住所（都道府県）:</label>
-            <select id="prefecture" name="prefecture" required>
-                <option value="" selected disabled>選択してください</option>
-                <!-- 47都道府県のオプションを追加 forで回す予定-->
-                <option value="北海道" <?php if (isset($_POST['prefecture']) && $_POST['prefecture'] == '北海道') echo 'selected'; ?>>北海道</option>
-                <option value="青森県" <?php if (isset($_POST['prefecture']) && $_POST['prefecture'] == '青森県') echo 'selected'; ?>>青森県</option>
-            </select>
+          <select id="prefecture" name="prefecture" required>
+          <option value="" selected disabled>選択してください</option>
+          <?php
+          // 47都道府県の配列
+          $prefectures = [
+              '北海道', '青森県', '岩手県', '宮城県', '秋田県',
+              '山形県', '福島県', '茨城県', '栃木県', '群馬県',
+              '埼玉県', '千葉県', '東京都', '神奈川県', '新潟県',
+              '富山県', '石川県', '福井県', '山梨県', '長野県',
+              '岐阜県', '静岡県', '愛知県', '三重県', '滋賀県',
+              '京都府', '大阪府', '兵庫県', '奈良県', '和歌山県',
+              '鳥取県', '島根県', '岡山県', '広島県', '山口県',
+              '徳島県', '香川県', '愛媛県', '高知県', '福岡県',
+              '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県'
+          ];
+
+          foreach ($prefectures as $prefecture) {
+            // $prefectures を $prefectureに置き換え
+              echo "<option value=\"$prefecture\"";
+              if (isset($_POST['prefecture']) && $_POST['prefecture'] == $prefecture) {
+                // isset($_POST['prefecture']) は、$_POST スーパーグローバル変数内に 'prefecture' という名前のキーが存在するかどうかを確認するための条件式
+                // isset($_POST['prefecture']) は、'prefecture' という名前のキーが $_POST 内に存在し、かつその値が NULL でないかを確認しています。
+                // フォームから 'prefecture' に関するデータが送信され、かつその値が $prefecture の値と一致する場合には、selected 属性が追加されます。
+                // selected 属性は、<option> 要素に対して使用される属性、使用することで、フォームの選択肢の中からあらかじめ選択された状態で表示することができます。
+                // selected 属性を追加することでフォームが再表示されたときの選択状態を決定するためのものです。
+                  echo ' selected';
+              }
+              echo ">$prefecture</option>";
+              // オプションの表示名として、都道府県の名前が表示
+          }
+          ?>
+          </select>
           <br>
 
           <!-- 住所（市区町村） -->
@@ -96,6 +122,8 @@
 
           <!-- oninput 入力フィールドに変更を加えるたびにjsに設定したバリデーションが行われる -->
           <!-- pattern属性 それぞれの項目の入力可能な文字を制限する　正規表現 -->
+          <!-- required属性　入力必須 -->
+          <!-- placeholder属性　フォームに説明を記入できる -->
 
           <button type="submit">確認する</button>
         </form>

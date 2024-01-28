@@ -106,18 +106,18 @@ $authority = ($_POST['authority'] == '0') ? '一般' : '管理者';
         <form method="post" action="regist_complete.php">
           <!-- 各確認要素 -->
           <button type="submit">登録する</button>
-          <input type="hidden" name="familyName" value="<?php echo $_POST['familyName']; ?>">
-          <input type="hidden" name="lastName" value="<?php echo $_POST['lastName']; ?>">
-          <input type="hidden" name="familyNameKana" value="<?php echo $_POST['familyNameKana']; ?>">
-          <input type="hidden" name="lastNameKana" value="<?php echo $_POST['lastNameKana'];?>">
-          <input type="hidden" name="mail" value="<?php echo $_POST['mail']; ?>">
-          <input type="hidden" name="password" value="<?php echo $_POST['password']; ?>">
-          <input type="hidden" name="gender" value="<?php echo $_POST['gender']; ?>">
-          <input type="hidden" name="postalCode" value="<?php echo $_POST['postalCode']; ?>">
-          <input type="hidden" name="prefecture" value="<?php echo $_POST['prefecture']; ?>">
-          <input type="hidden" name="address1" value="<?php echo $_POST['address1']; ?>">
-          <input type="hidden" name="address2" value="<?php echo $_POST['address2']; ?>">
-          <input type="hidden" name="authority" value="<?php echo $_POST['authority']; ?>">
+          <input type="hidden" name="familyName" value="<?php echo isset($_POST['familyName']) ? htmlspecialchars($_POST['familyName'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="lastName" value="<?php echo isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="familyNameKana" value="<?php echo isset($_POST['familyNameKana']) ? htmlspecialchars($_POST['familyNameKana'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="lastNameKana" value="<?php echo isset($_POST['lastNameKana']) ? htmlspecialchars($_POST['lastNameKana'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="mail" value="<?php echo isset($_POST['mail']) ? htmlspecialchars($_POST['mail'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="password" value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="gender" value="<?php echo isset($_POST['gender']) ? htmlspecialchars($_POST['gender'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="postalCode" value="<?php echo isset($_POST['postalCode']) ? htmlspecialchars($_POST['postalCode'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="prefecture" value="<?php echo isset($_POST['prefecture']) ? htmlspecialchars($_POST['prefecture'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="address1" value="<?php echo isset($_POST['address1']) ? htmlspecialchars($_POST['address1'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="address2" value="<?php echo isset($_POST['address2']) ? htmlspecialchars($_POST['address2'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="authority" value="<?php echo isset($_POST['authority']) ? htmlspecialchars($_POST['authority'], ENT_QUOTES) : ''; ?>">
         </form>
 
         <form method="post" action="regist.php">
@@ -137,6 +137,7 @@ $authority = ($_POST['authority'] == '0') ? '一般' : '管理者';
           <button type="submit">前に戻る</button>
 
           <!-- htmlspecialchars は、HTMLエスケープ処理 PHP関数　これを使うと、HTML タグや特殊文字をエスケープする。 -->
+          <!-- isset は、変数がセットされているかどうかを確認するためのPHPの関数です。変数がセットされている場合に true を、セットされていない場合には false を返します。 -->
           <!-- 主なパラメータ： -->
           <!-- $string: エスケープしたい文字列。
           $flags: エンティティ変換のモードを指定するフラグ。デフォルトは ENT_COMPAT | ENT_HTML401 です。
