@@ -15,7 +15,6 @@ $prefecture = $_POST['prefecture'];
 $address1 = $_POST['address1'];
 $address2 = $_POST['address2'];
 $authority = ($_POST['authority'] == '0') ? '一般' : '管理者';
-
 ?>
 
 <!DOCTYPE html>
@@ -24,8 +23,33 @@ $authority = ($_POST['authority'] == '0') ? '一般' : '管理者';
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="css/shareStyle.css">
   <title>アカウント登録確認画面</title>
-  <script>
-  </script>
+    <style>
+
+    main{
+      margin: 10px;
+    }
+    table {
+    width: 200px;               /* 幅指定 */
+    height: 90px;               /* 高さ指定 */
+    margin:  0 auto;            /* 中央寄せ */
+    }
+    .button-container{
+    padding: 10px;              /* 余白指定 */
+    height: 50px;              /* 高さ指定 */
+    text-align:  center;        /* 中央寄せ */
+    display: flex;
+    justify-content:center
+    }
+    #registBack {
+      padding: 20px;
+      margin: 10px;
+    }
+
+    #registerDatabase {
+      padding: 20px;
+      margin: 10px;
+    }
+    </style>
 </head>
 <body>
   <header>
@@ -102,25 +126,8 @@ $authority = ($_POST['authority'] == '0') ? '一般' : '管理者';
       </table>
 
       <div class="button-container">
-        <!-- 登録処理をしてアカウント登録完了画面に遷移 -->
-        <form method="post" action="regist_complete.php">
-          <!-- 各確認要素 -->
-          <button type="submit">登録する</button>
-          <input type="hidden" name="familyName" value="<?php echo isset($_POST['familyName']) ? htmlspecialchars($_POST['familyName'], ENT_QUOTES) : ''; ?>">
-          <input type="hidden" name="lastName" value="<?php echo isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName'], ENT_QUOTES) : ''; ?>">
-          <input type="hidden" name="familyNameKana" value="<?php echo isset($_POST['familyNameKana']) ? htmlspecialchars($_POST['familyNameKana'], ENT_QUOTES) : ''; ?>">
-          <input type="hidden" name="lastNameKana" value="<?php echo isset($_POST['lastNameKana']) ? htmlspecialchars($_POST['lastNameKana'], ENT_QUOTES) : ''; ?>">
-          <input type="hidden" name="mail" value="<?php echo isset($_POST['mail']) ? htmlspecialchars($_POST['mail'], ENT_QUOTES) : ''; ?>">
-          <input type="hidden" name="password" value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password'], ENT_QUOTES) : ''; ?>">
-          <input type="hidden" name="gender" value="<?php echo isset($_POST['gender']) ? htmlspecialchars($_POST['gender'], ENT_QUOTES) : ''; ?>">
-          <input type="hidden" name="postalCode" value="<?php echo isset($_POST['postalCode']) ? htmlspecialchars($_POST['postalCode'], ENT_QUOTES) : ''; ?>">
-          <input type="hidden" name="prefecture" value="<?php echo isset($_POST['prefecture']) ? htmlspecialchars($_POST['prefecture'], ENT_QUOTES) : ''; ?>">
-          <input type="hidden" name="address1" value="<?php echo isset($_POST['address1']) ? htmlspecialchars($_POST['address1'], ENT_QUOTES) : ''; ?>">
-          <input type="hidden" name="address2" value="<?php echo isset($_POST['address2']) ? htmlspecialchars($_POST['address2'], ENT_QUOTES) : ''; ?>">
-          <input type="hidden" name="authority" value="<?php echo isset($_POST['authority']) ? htmlspecialchars($_POST['authority'], ENT_QUOTES) : ''; ?>">
-        </form>
 
-        <form method="post" action="regist.php">
+        <form method="post" action="regist.php" id="registBack">
           <!-- hiddenフィールドの値をフォームに戻す -->
           <input type="hidden" name="familyName" value="<?php echo isset($_POST['familyName']) ? htmlspecialchars($_POST['familyName'], ENT_QUOTES) : ''; ?>">
           <input type="hidden" name="lastName" value="<?php echo isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName'], ENT_QUOTES) : ''; ?>">
@@ -144,6 +151,25 @@ $authority = ($_POST['authority'] == '0') ? '一般' : '管理者';
           $encoding: 変換に使用する文字エンコーディング。デフォルトは ini_get("default_charset") です。
           $double_encode: 二重エンコードを防ぐためのフラグ。デフォルトは true です。 -->
         </form>
+
+        <!-- 登録処理をしてアカウント登録完了画面に遷移 -->
+        <form method="post" action="regist_complete.php" id="registerDatabase">
+          <!-- 各確認要素 -->
+          <button type="submit">登録する</button>
+          <input type="hidden" name="familyName" value="<?php echo isset($_POST['familyName']) ? htmlspecialchars($_POST['familyName'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="lastName" value="<?php echo isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="familyNameKana" value="<?php echo isset($_POST['familyNameKana']) ? htmlspecialchars($_POST['familyNameKana'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="lastNameKana" value="<?php echo isset($_POST['lastNameKana']) ? htmlspecialchars($_POST['lastNameKana'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="mail" value="<?php echo isset($_POST['mail']) ? htmlspecialchars($_POST['mail'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="password" value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="gender" value="<?php echo isset($_POST['gender']) ? htmlspecialchars($_POST['gender'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="postalCode" value="<?php echo isset($_POST['postalCode']) ? htmlspecialchars($_POST['postalCode'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="prefecture" value="<?php echo isset($_POST['prefecture']) ? htmlspecialchars($_POST['prefecture'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="address1" value="<?php echo isset($_POST['address1']) ? htmlspecialchars($_POST['address1'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="address2" value="<?php echo isset($_POST['address2']) ? htmlspecialchars($_POST['address2'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="authority" value="<?php echo isset($_POST['authority']) ? htmlspecialchars($_POST['authority'], ENT_QUOTES) : ''; ?>">
+        </form>
+
       </div>
     </div>
   </main>
