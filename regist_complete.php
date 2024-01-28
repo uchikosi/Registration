@@ -6,11 +6,15 @@
 
 // パスワードをハッシュ化
 $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
+// 現在の日時を取得
+$registeredTime = date("Y-m-d H:i:s");
+// パラメータが0の場合は「有効」で1の場合は「無効」
+$delete_flag = "1";
 
 // try ブロック:データベースへの登録処理が try内で実行されます。この部分でエラーが発生した場合は、catch ブロックに処理が移ります。
 try {
   $pdo = new PDO("mysql:dbname=DIBlog;host=localhost;", "root", "root");
-  $stmt = $pdo->prepare("INSERT INTO users (family_name, last_name, family_name_kana, last_name_kana, mail, password, gender, postal_code, prefecture, address_1, address_2, authority) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  $stmt = $pdo->prepare("INSERT INTO users (family_name, last_name, family_name_kana, last_name_kana, mail, password, gender, postal_code, prefecture, address_1, address_2, authority, delete_flag, registered_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
   $result = $stmt->execute([
     $_POST['familyName'],
     $_POST['lastName'],
@@ -23,7 +27,9 @@ try {
     $_POST['prefecture'],
     $_POST['address1'],
     $_POST['address2'],
-    $_POST['authority']
+    $_POST['authority'],
+    $delete_flag,
+    $registeredTime // 現在の日時を使用
   ]);
 
   if ($result) {
