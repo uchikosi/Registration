@@ -8,8 +8,11 @@ $delete_flag = "1";
 
 // try ブロック:データベースへの登録処理が try内で実行されます。この部分でエラーが発生した場合は、catch ブロックに処理が移ります。
 try {
+  // PDOを使用してデータベースに接続し、ユーザーの情報をデータベースのusersテーブルに挿入
   $pdo = new PDO("mysql:dbname=DIBlog;host=localhost;", "root", "root");
+  // prepare()メソッドは、実行するSQLクエリのプリペアドステートメント（準備された文）を作成します。VALUES以下の各?はプレースホルダであり、後でバインドされる値が入る場所を表しています。
   $stmt = $pdo->prepare("INSERT INTO users (family_name, last_name, family_name_kana, last_name_kana, mail, password, gender, postal_code, prefecture, address_1, address_2, authority, delete_flag, registered_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  // execute()メソッドは、プリペアドステートメントを実行します。配列内の値が対応するプレースホルダにバインドされます。実行結果は$resultに格納されます。
   $result = $stmt->execute([
     $_POST['familyName'],
     $_POST['lastName'],

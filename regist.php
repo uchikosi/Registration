@@ -5,6 +5,11 @@
   <link rel="stylesheet" type="text/css" href="css/shareStyle.css">
   <title>アカウント登録フォーム</title>
   <script type="text/javascript" src="script.js"></script>
+   <style>
+    form{
+      text-align: center;
+    }
+    </style>
 </head>
 <body>
   <header>
@@ -26,8 +31,7 @@
     </div>
   </header>
   <main>
-      <div id="left">
-        <h1 iD="books"></h1>
+      <div id="regist">
         <h1>アカウント登録フォーム</h1>
         <form method="post" action="regist_confirm.php" onsubmit="return validateForm()">
           <label for="familyName">名前（姓）:</label>

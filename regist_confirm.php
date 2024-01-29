@@ -10,6 +10,9 @@ $lastNameKana = $_POST['lastNameKana'];
 $mail = $_POST['mail'];
 $password = $_POST['password'];
 $gender = ($_POST['gender'] == '0') ? '男' : '女';
+// 三項演算子と呼ばれるものです。通常のif文と同じような条件分岐を簡潔に書くために使われます。
+// if ($_POST['gender'] == '0') {$gender = '男';} else {$gender = '女';}
+// つまり、$_POST['gender'] の値が '0' であれば '男' を、そうでなければ '女' を $gender に代入しています。
 $postalCode = $_POST['postalCode'];
 $prefecture = $_POST['prefecture'];
 $address1 = $_POST['address1'];
@@ -23,7 +26,7 @@ $authority = ($_POST['authority'] == '0') ? '一般' : '管理者';
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="css/shareStyle.css">
   <title>アカウント登録確認画面</title>
-    <style>
+  <style>
 
     main{
       margin: 10px;
@@ -134,7 +137,6 @@ $authority = ($_POST['authority'] == '0') ? '一般' : '管理者';
           <input type="hidden" name="familyNameKana" value="<?php echo isset($_POST['familyNameKana']) ? htmlspecialchars($_POST['familyNameKana'], ENT_QUOTES) : ''; ?>">
           <input type="hidden" name="lastNameKana" value="<?php echo isset($_POST['lastNameKana']) ? htmlspecialchars($_POST['lastNameKana'], ENT_QUOTES) : ''; ?>">
           <input type="hidden" name="mail" value="<?php echo isset($_POST['mail']) ? htmlspecialchars($_POST['mail'], ENT_QUOTES) : ''; ?>">
-          <!-- <input type="hidden" name="password" value="<?php //echo isset($_POST['password']) ? htmlspecialchars($_POST['password'], ENT_QUOTES) : ''; ?>"> -->
           <input type="hidden" name="gender" value="<?php echo isset($_POST['gender']) ? htmlspecialchars($_POST['gender'], ENT_QUOTES) : ''; ?>">
           <input type="hidden" name="postalCode" value="<?php echo isset($_POST['postalCode']) ? htmlspecialchars($_POST['postalCode'], ENT_QUOTES) : ''; ?>">
           <input type="hidden" name="prefecture" value="<?php echo isset($_POST['prefecture']) ? htmlspecialchars($_POST['prefecture'], ENT_QUOTES) : ''; ?>">
