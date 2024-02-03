@@ -58,7 +58,7 @@
           <br>
 
           <label for="password">パスワード:</label>
-          <input type="password" id="password" name="password" minlength="3" maxlength="10"  required  placeholder="半角英数字 3~10文字">
+          <input type="password" id="password" name="password" minlength="3" maxlength="10" oninput="validatePassword(this)" placeholder="半角英数字 3~10文字">
           <br>
 
           <label>性別:</label>

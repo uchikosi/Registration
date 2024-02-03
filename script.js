@@ -94,6 +94,31 @@ function validateEmail(input) {
   }
 }
 
+// パスワードのバリデーション関数
+function validatePassword(input) {
+
+  // 半角英数字の正規表現
+  const passwordPattern = /^[0-9a-zA-Z]+$/;
+
+  // 入力された値
+  const passwordValue = input.value.trim();
+
+  // 入力が空でない場合のみ正規表現と比較
+  if (passwordValue !== '') {
+    if (!passwordPattern.test(passwordValue)) {
+      // エラーメッセージを表示
+      input.setCustomValidity("半角英数字のみ入力できます。");
+    } else {
+      // エラーメッセージをクリア
+      input.setCustomValidity("");
+    }
+  } else {
+    // 入力が空の場合の処理を削除
+    console.log("パスワードは必須です。");
+    input.setCustomValidity("パスワードは必須です。");
+  }
+}
+
 // validateForm 関数内
 function validateForm() {
   // 各入力フィールドに対するバリデーションを手動で実行
@@ -102,15 +127,17 @@ function validateForm() {
   const familyNameKanaInput = document.getElementById('familyNameKana');
   const lastNameKanaInput = document.getElementById('lastNameKana');
   const mailInput = document.getElementById('mail');
+  const passwordInput = document.getElementById('password');
 
   validateName(familyNameInput, true);
   validateName(lastNameInput, false);
   validateNameKana(familyNameKanaInput, true);
   validateNameKana(lastNameKanaInput, false);
   validateEmail(mailInput);
+  validatePassword(passwordInput);
 
   // バリデーション結果を取得
-  const isFormValid = familyNameInput.checkValidity() && lastNameInput.checkValidity() && familyNameKanaInput.checkValidity() && lastNameKanaInput.checkValidity() && mailInput.checkValidity();
+  const isFormValid = familyNameInput.checkValidity() && lastNameInput.checkValidity() && familyNameKanaInput.checkValidity() && lastNameKanaInput.checkValidity() && mailInput.checkValidity() && passwordInput.checkValidity();
 
   // バリデーションが成功した場合はフォームをサブミット
   return isFormValid;
