@@ -113,8 +113,6 @@ function validatePassword(input) {
       input.setCustomValidity("");
     }
   } else {
-    // 入力が空の場合の処理を削除
-    console.log("パスワードは必須です。");
     input.setCustomValidity("パスワードは必須です。");
   }
 }

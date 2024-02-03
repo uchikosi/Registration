@@ -54,7 +54,7 @@
           <br>
 
           <label for="mail">メールアドレス:</label>
-          <input type="text" id="mail" name="mail" maxlength="100" oninput="validateEmail(this)" <?php if (isset($_POST['mail'])) echo 'value="' . htmlspecialchars($_POST['mail'], ENT_QUOTES) . '"'; ?>>
+          <input type="text" id="mail" name="mail" maxlength="100" oninput="validateEmail(this)" placeholder="@,ドット,半角英数字のみ" <?php if (isset($_POST['mail'])) echo 'value="' . htmlspecialchars($_POST['mail'], ENT_QUOTES) . '"'; ?>>
           <br>
 
           <label for="password">パスワード:</label>
