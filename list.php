@@ -99,7 +99,7 @@ $result = $pdo->query($sql);å
                 // 更新日時
                 echo "<td>";
                 if ($row['update_time'] !== null) {
-                  // 値があれば表示、NULLの場合に空欄になる
+                  // 値があれば表示、NULLの場合に更新なしになる
                     echo date("Y/m/d", strtotime($row['update_time']));
                 }else {
                     echo "更新なし";
@@ -111,7 +111,6 @@ $result = $pdo->query($sql);å
             }
           ?>
         </table>
-
       </div>
   </main>
   <footer>
