@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="css/shareStyle.css">
   <title>アカウント登録フォーム</title>
-  <script type="text/javascript" src="script.js"></script>
+  <script type="text/javascript" src="js/Registration/script.js"></script>
    <style>
     form{
       text-align: center;
@@ -25,6 +25,7 @@
         <li>プロフィール</li>
         <li>D.I.Blogについて</li>
         <li> <a href="http://localhost:8888/Registration/regist.php">登録ホーム</a></li>
+        <li> <a href="http://localhost:8888/Registration/list.php">アカウント一覧</a></li>
         <li>問い合わせ</li>
         <li>その他</li>
       </ul>

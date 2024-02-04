@@ -68,6 +68,7 @@ $authority = ($_POST['authority'] == '0') ? '一般' : '管理者';
         <li>プロフィール</li>
         <li>D.I.Blogについて</li>
         <li> <a href="http://localhost:8888/Registration/regist_confirm.php">登録ホーム</a></li>
+        <li> <a href="http://localhost:8888/Registration/list.php">アカウント一覧</a></li>
         <li>問い合わせ</li>
         <li>その他</li>
       </ul>
