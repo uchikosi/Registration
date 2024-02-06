@@ -25,7 +25,6 @@ $result = $pdo->query($sql);å
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="css/shareStyle.css">
   <title>アカウント一覧</title>
-  <script type="text/javascript" src="js/list/script.js"></script>
   <style>
     /* 罫線 */
     table {
@@ -90,7 +89,10 @@ $result = $pdo->query($sql);å
                 echo "<td>{$row['last_name']}</td>";
                 echo "<td>{$row['family_name_kana']}</td>";
                 echo "<td>{$row['last_name_kana']}</td>";
-                echo "<td>{$row['mail']}</td>";
+                // メールアドレスが50文字以上の場合に折り返して表示
+                $mail = $row['mail'];
+                $mailClass = strlen($mail) > 50 ? 'long-text' : ''; // 適切な文字数を設定
+                echo "<td class='$mailClass'>{$mail}</td>";
                 echo "<td>" . ($row['gender'] == 0 ? '男' : '女') . "</td>";
                 echo "<td>" . ($row['authority'] == 0 ? '一般' : '管理者') . "</td>";
                 echo "<td>" . ($row['delete_flag'] == 0 ? '有効' : '無効') . "</td>";
@@ -117,6 +119,16 @@ $result = $pdo->query($sql);å
     <p>Copytifht D.I.Worksl D.I.blog is the one which provides A to Z about programming</p>
   </footer>
 
+  <script>
+    var longTextElements = document.getElementsByClassName('long-text');
+    for (var i = 0; i < longTextElements.length; i++) {
+        var element = longTextElements[i];
+        var text = element.innerText;
+        if (text.length > 50) {
+            element.innerHTML = text.replace(/(.{50})/g, '$1<br>');
+        }
+    }
+  </script>
 </body>
 </html>
 <?php
