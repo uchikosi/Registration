@@ -66,7 +66,7 @@
       <h1>アカウント更新</h1>
       <!-- // フォームにデータを表示 -->
       <form method='post' action='update_confirm.php'>
-         <input type='' name='id' value='<?php echo $userId; ?>'>
+         <input type='hidden' name='id' value='<?php echo $userId; ?>'>
 
         <label for='family_name'>名前(姓)</label>
         <input type='text' name='familyName' value='<?php echo htmlspecialchars($userData['family_name'], ENT_QUOTES); ?>'>
@@ -84,7 +84,7 @@
         <input type='text' name='mail' value='<?php echo htmlspecialchars($userData['mail'], ENT_QUOTES); ?>'>
 
         <label for='password'>パスワード:</label>
-        <input type='password' name='password' value='⚫'>
+        <input type='password' name='password' value=''>
 
         <label>性別</label>
         <label><input type='radio' name='gender' value='0' <?php echo ($userData['gender'] == 0 ? 'checked' : ''); ?>> 男性</label>

@@ -38,59 +38,84 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </a>
     </div>
     <div id="">
+        <h1>アカウント更新確認画面</h1>
+        <table>
+            <tr>
+                <td>名前（姓）</td>
+                <td><?php echo  $newFamilyName; ?></td>
+            </tr>
+            <tr>
+                <td>名前（名）</td>
+                <td><?php echo $newlastName; ?></td>
+            </tr>
+            <tr>
+                <td>カナ（姓）</td>
+                <td><?php echo $newfamilyNameKana ; ?></td>
+            </tr>
+            <tr>
+                <td>カナ（名）</td>
+                <td><?php echo $newLastNameKana; ?></td>
+            </tr>
+            <tr>
+                <td>メールアドレス</td>
+                <td><?php echo $newMail; ?></td>
+            </tr>
+            <tr>
+                <td>パスワード</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>性別</td>
+                <td><?php echo ($newGender['gender'] == 0 ? '男性' : '女性'); ?></td>
+            </tr>
+            <tr>
+                <td>郵便番号</td>
+                <td><?php echo $newPostalCode; ?></td>
+            </tr>
+            <tr>
+                <td>住所（都道府県）</td>
+                <td><?php echo $newPrefecture; ?></td>
+            </tr>
+            <tr>
+                <td>住所（市区町村）</td>
+                <td><?php echo $newAddress1 ; ?></td>
+            </tr>
+            <tr>
+                <td>住所（番地）</td>
+                <td><?php echo $newAddress2 ; ?></td>
+            </tr>
+            <tr>
+                <td>アカウント権限</td>
+                <td><?php echo ($newAuthority['authority'] == 0 ? '一般' : '管理者'); ?></td>
+            </tr>
+        </table>
+    </div>
+    <div class="button-container">
+        <form method="post" action="update.php?id=<?php echo $userId; ?>">
+            <input type="hidden" name="id" value="<?php echo $userId; ?>">
+            <input type="hidden" name="familyName" value="<?php echo htmlspecialchars($newFamilyName, ENT_QUOTES); ?>">
+            <input type="hidden" name="lastName" value="<?php echo htmlspecialchars($newlastName, ENT_QUOTES); ?>">
+            <input type="hidden" name="familyNameKana" value="<?php echo htmlspecialchars($newfamilyNameKana, ENT_QUOTES); ?>">
+            <input type="hidden" name="lastNameKana" value="<?php echo htmlspecialchars($newLastNameKana, ENT_QUOTES); ?>">
+            <input type="hidden" name="mail" value="<?php echo htmlspecialchars($newMail, ENT_QUOTES); ?>">
+            <input type="hidden" name="password" value="<?php echo htmlspecialchars($newPassword, ENT_QUOTES); ?>">
+            <input type="hidden" name="postalCode" value="<?php echo htmlspecialchars($newPostalCode, ENT_QUOTES); ?>">
+            <input type="hidden" name="prefecture" value="<?php echo htmlspecialchars($newPrefecture, ENT_QUOTES); ?>">
+            <input type="hidden" name="address1" value="<?php echo htmlspecialchars($newAddress1, ENT_QUOTES); ?>">
+            <input type="hidden" name="address2" value="<?php echo htmlspecialchars($newAddress2, ENT_QUOTES); ?>">
+            <input type="hidden" name="gender" value="<?php echo htmlspecialchars($newGender, ENT_QUOTES); ?>">
+            <input type="hidden" name="authority" value="<?php echo htmlspecialchars($newAuthority, ENT_QUOTES); ?>">
+            <input type="submit" value="前に戻る">
+        </form>
+          <!-- htmlspecialchars は、HTMLエスケープ処理 PHP関数　これを使うと、HTML タグや特殊文字をエスケープする。 -->
 
-  <h1>アカウント更新確認画面</h1>
+        <!-- 更新処理をしてアカウント更新完了画面に遷移 -->
+        <form method="post" action="update_complete.php">
+          <!-- 各確認要素 -->
+          <button type="submit">更新する</button>
 
-  <table>
-      <tr>
-          <td>名前（姓）</td>
-          <td><?php echo  $newFamilyName; ?></td>
-      </tr>
-      <tr>
-          <td>名前（名）</td>
-          <td><?php echo $newlastName; ?></td>
-      </tr>
-      <tr>
-          <td>カナ（姓）</td>
-          <td><?php echo $newfamilyNameKana ; ?></td>
-      </tr>
-      <tr>
-          <td>カナ（名）</td>
-          <td><?php echo $newLastNameKana; ?></td>
-      </tr>
-      <tr>
-          <td>メールアドレス</td>
-          <td><?php echo $newMail; ?></td>
-      </tr>
-      <tr>
-          <td>パスワード</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>性別</td>
-          <td><?php echo ($newGender['gender'] == 0 ? '男性' : '女性'); ?></td>
-      </tr>
-      <tr>
-          <td>郵便番号</td>
-          <td><?php echo $newPostalCode; ?></td>
-      </tr>
-      <tr>
-          <td>住所（都道府県）</td>
-          <td><?php echo $newPrefecture; ?></td>
-      </tr>
-      <tr>
-          <td>住所（市区町村）</td>
-          <td><?php echo $newAddress1 ; ?></td>
-      </tr>
-      <tr>
-          <td>住所（番地）</td>
-          <td><?php echo $newAddress2 ; ?></td>
-      </tr>
-      <tr>
-          <td>アカウント権限</td>
-          <td><?php echo ($newAuthority['authority'] == 0 ? '一般' : '管理者'); ?></td>
-      </tr>
-  </table>
+        </form>
+
       </div>
   </main>
   <footer>
