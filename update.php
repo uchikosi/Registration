@@ -1,17 +1,18 @@
 <?php
-// データベースへの接続
-mb_internal_encoding("utf8");
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "DIBlog";
+  session_start();
+  // データベースへの接続
+  mb_internal_encoding("utf8");
+  $servername = "localhost";
+  $username = "root";
+  $password = "root";
+  $dbname = "DIBlog";
 
-try {
-   $pdo = new PDO("mysql:dbname={$dbname};host={$servername}", $username, $password);
-   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-   die("データベースへの接続に失敗しました: " . $e->getMessage());
-}
+  try {
+    $pdo = new PDO("mysql:dbname={$dbname};host={$servername}", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  } catch (PDOException $e) {
+    die("データベースへの接続に失敗しました: " . $e->getMessage());
+  }
 
    // URLからユーザーIDを取得
    $userId = $_GET['id'];
@@ -28,7 +29,7 @@ try {
        die("ユーザー情報の取得に失敗しました: " . $e->getMessage());
    }
 
-   var_dump($userData);
+  //  var_dump($userData);
 ?>
 
 <!DOCTYPE html>
@@ -65,18 +66,19 @@ try {
       <h1>アカウント更新</h1>
       <!-- // フォームにデータを表示 -->
       <form method='post' action='update_confirm.php'>
-        <input type='hidden' name='id' value='<?php echo $userId; ?>'>
+         <input type='' name='id' value='<?php echo $userId; ?>'>
+
         <label for='family_name'>名前(姓)</label>
-        <input type='text' name='family_name' value='<?php echo htmlspecialchars($userData['family_name'], ENT_QUOTES); ?>'>
+        <input type='text' name='familyName' value='<?php echo htmlspecialchars($userData['family_name'], ENT_QUOTES); ?>'>
 
         <label for='last_name'>名前(名)</label>
-        <input type='text' name='last_name' value='<?php echo htmlspecialchars($userData['last_name'], ENT_QUOTES); ?>'>
+        <input type='text' name='lastName' value='<?php echo htmlspecialchars($userData['last_name'], ENT_QUOTES); ?>'>
 
-        <label for='family_name_kana'>カナ(姓)</label>
-        <input type='text' name='family_name_kana' value='<?php echo htmlspecialchars($userData['family_name_kana'], ENT_QUOTES); ?>'>
+         <label for='family_name_kana'>カナ(姓)</label>
+        <input type='text' name='familyNameKana' value='<?php echo htmlspecialchars($userData['family_name_kana'], ENT_QUOTES); ?>'>
 
         <label for='last_name_kana'>カナ(名)</label>
-        <input type='text' name='last_name_kana' value='<?php echo htmlspecialchars($userData['last_name_kana'], ENT_QUOTES); ?>'>
+        <input type='text' name='lastNameKana' value='<?php echo htmlspecialchars($userData['last_name_kana'], ENT_QUOTES); ?>'>
 
         <label for='mail'>メールアドレス</label>
         <input type='text' name='mail' value='<?php echo htmlspecialchars($userData['mail'], ENT_QUOTES); ?>'>
@@ -89,7 +91,7 @@ try {
         <label><input type='radio' name='gender' value='1' <?php echo ($userData['gender'] == 1 ? 'checked' : ''); ?>> 女性</label>
 
         <label for='postal_code'>郵便番号:</label>
-        <input type='text' name='postal_code' value='<?php echo htmlspecialchars($userData['postal_code'], ENT_QUOTES); ?>'>
+        <input type='text' name='postalCode' value='<?php echo htmlspecialchars($userData['postal_code'], ENT_QUOTES); ?>'>
 
         <label for='prefecture'>都道府県:</label>
         <select name='prefecture'>
@@ -110,10 +112,10 @@ try {
         </select>
 
         <label for='address1'>住所1:</label>
-        <input type='text' name='address_1' value='<?php echo htmlspecialchars($userData['address_1'], ENT_QUOTES); ?>'>
+        <input type='text' name='address1' value='<?php echo htmlspecialchars($userData['address_1'], ENT_QUOTES); ?>'>
 
         <label for='address2'>住所2:</label>
-        <input type='text' name='address_2' value='<?php echo htmlspecialchars($userData['address_2'], ENT_QUOTES); ?>'>
+        <input type='text' name='address2' value='<?php echo htmlspecialchars($userData['address_2'], ENT_QUOTES); ?>'>
 
         <label for='authority'>アカウント権限</label>
         <select name='authority'>
@@ -123,44 +125,6 @@ try {
 
         <input type='submit' value='確認する'>
       </form>
-
-      <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-          // POSTリクエストの場合、フォームデータを処理
-          $userId = $_POST['id'];
-          $newFamilyName = $_POST['family_name'];
-          $newLastName = $_POST['last_name'];
-          $newFamilyNameKana = $_POST['family_name_kana'];
-          $newLastNameKana = $_POST['last_name_kana'];
-          $newMail = $_POST['mail'];
-          $newPassword =$_POST['password'];
-          $newGender = $_POST['gender'];
-          $newPostalCode = $_POST['postal_code'];
-          $newPrefecture = $_POST['prefecture'];
-          $newAddress1 = $_POST['address_1'];
-          $newAddress2 = $_POST['address_2'];
-
-          // update_confirm.phpに値を渡すために、セッションにデータを保存する
-          $_SESSION['update_confirm_data'] = array(
-            'id' => $userId,
-            'family_name' => $newFamilyName,
-            'last_name' => $newLastName,
-            'family_name_kana' => $newFamilyNameKana,
-            'last_name_kana' => $newLastNameKana,
-            'mail' => $newMail,
-            'password' => $newPassword,
-            'gender' => $newGender,
-            'postal_code' => $newPostalCode,
-            'prefecture' => $newPrefecture,
-            'address_1' => $newAddress1,
-            'address_2' => $newAddress2
-          );
-
-          // update_confirm.phpにリダイレクトする
-          header("Location: update_confirm.php");
-          exit();
-        }
-      ?>
     </div>
   </main>
   <footer>
