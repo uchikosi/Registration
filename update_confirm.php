@@ -11,12 +11,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newLastNameKana = $_POST['lastNameKana'];
     $newMail = $_POST['mail'];
     $newpassword = $_POST['password'];
+    $newGender = $_POST['gender'];
     $newPostalCode = $_POST['postalCode'];
     $newPrefecture = $_POST['prefecture'];
     $newAddress1 = $_POST['address1'];
     $newAddress2 = $_POST['address2'];
     $newAuthority = $_POST['authority'];
-    // var_dump($newMail);
+    var_dump($newMail);
 }
 ?>
 
@@ -111,9 +112,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <!-- 更新処理をしてアカウント更新完了画面に遷移 -->
         <form method="post" action="update_complete.php">
-          <!-- 各確認要素 -->
-          <button type="submit">更新する</button>
+            <input type="hidden" name="id" value="<?php echo $userId; ?>">
 
+            <input type="hidden" name="familyName" value="<?php echo isset($_POST['familyName']) ? htmlspecialchars($_POST['familyName'], ENT_QUOTES) : ''; ?>">
+            <input type="hidden" name="lastName" value="<?php echo isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="familyNameKana" value="<?php echo isset($_POST['familyNameKana']) ? htmlspecialchars($_POST['familyNameKana'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="lastNameKana" value="<?php echo isset($_POST['lastNameKana']) ? htmlspecialchars($_POST['lastNameKana'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="mail" value="<?php echo isset($_POST['mail']) ? htmlspecialchars($_POST['mail'], ENT_QUOTES) : ''; ?>">
+          <!-- <input type="hidden" name="password" value="<?php //echo isset($_POST['password']) ? htmlspecialchars($_POST['password'], ENT_QUOTES) : ''; ?>"> -->
+          <input type="hidden" name="gender" value="<?php echo isset($_POST['gender']) ? htmlspecialchars($_POST['gender'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="postalCode" value="<?php echo isset($_POST['postalCode']) ? htmlspecialchars($_POST['postalCode'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="prefecture" value="<?php echo isset($_POST['prefecture']) ? htmlspecialchars($_POST['prefecture'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="address1" value="<?php echo isset($_POST['address1']) ? htmlspecialchars($_POST['address1'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="address2" value="<?php echo isset($_POST['address2']) ? htmlspecialchars($_POST['address2'], ENT_QUOTES) : ''; ?>">
+          <input type="hidden" name="authority" value="<?php echo isset($_POST['authority']) ? htmlspecialchars($_POST['authority'], ENT_QUOTES) : ''; ?>">
+
+            <input type="submit" name="" value="更新">
         </form>
 
       </div>
