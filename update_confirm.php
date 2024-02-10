@@ -17,8 +17,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newAddress1 = $_POST['address1'];
     $newAddress2 = $_POST['address2'];
     $newAuthority = $_POST['authority'];
-    var_dump($newMail);
+    // var_dump($newMail);
 }
+
+// パスワードの文字数チェック
+if (isset($_POST['password']) && strlen($_POST['password']) > 10) {
+    $_SESSION['error'] = "パスワードの文字数は10文字以内にしてください。";
+    header("Location: update.php"); // update.php にリダイレクト
+    exit(); // 遷移をブロックするためにスクリプトを終了
+}
+
+// 入力された値をセッションに保存する
+$_SESSION['form_values'] = $_POST;
+
 ?>
 
 <!DOCTYPE html>
@@ -129,8 +140,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <input type="submit" name="" value="更新">
         </form>
-
-      </div>
   </main>
   <footer>
     <p>Copytifht D.I.Worksl D.I.blog is the one which provides A to Z about programming</p>

@@ -7,7 +7,7 @@ $servername = "localhost";
 $username = "root";
 $password = "root";
 $dbname = "DIBlog";
-var_dump($_POST);
+// var_dump($_POST);
 
 // 現在の日時を取得
 $updateTime = date("Y-m-d H:i:s");
@@ -36,7 +36,7 @@ try {
     $updateTime;
 
     // 他の更新する値も同様に取得する
-    var_dump($familyName);
+    // var_dump($familyName);
 
     // UPDATE文を準備
     $stmt = $pdo->prepare("UPDATE users SET family_name = :familyName, last_name = :lastName, family_name_kana = :familyNameKana, last_name_kana = :lastNameKana, mail = :mail, password = :hashedPassword, gender = :gender, postal_code = :postalCode, prefecture = :prefecture, address_1 = :address1, address_2 = :address2, authority = :authority, update_time = :updateTime WHERE id = :userId");
