@@ -69,29 +69,100 @@
          <input type='hidden' name='id' value='<?php echo $userId; ?>'>
 
         <label for='family_name'>名前(姓)</label>
-        <input type='text' name='familyName' value='<?php echo htmlspecialchars($userData['family_name'], ENT_QUOTES); ?>'>
+        <input type='text' name='familyName' value='<?php
+          if (isset($_POST['familyName'])){
+            // update_confirm.phpから遷移した場合
+            echo htmlspecialchars($_POST['familyName'], ENT_QUOTES);
+          } elseif (isset($_GET['id'])) {
+            // list.phpから遷移した場合
+            echo htmlspecialchars($userData['family_name'], ENT_QUOTES);
+          } else {
+            // その他の場合
+            echo '';
+          }?>'>
 
         <label for='last_name'>名前(名)</label>
-        <input type='text' name='lastName' value='<?php echo htmlspecialchars($userData['last_name'], ENT_QUOTES); ?>'>
+        <input type='text' name='lastName' value='<?php
+          if (isset($_POST['lastName'])){
+            // update_confirm.phpから遷移した場合
+            echo htmlspecialchars($_POST['lastName'], ENT_QUOTES);
+          } elseif (isset($_GET['id'])) {
+            // list.phpから遷移した場合
+            echo htmlspecialchars($userData['last_name'], ENT_QUOTES);
+          } else {
+            // その他の場合
+            echo '';
+          }?>'>
 
          <label for='family_name_kana'>カナ(姓)</label>
-        <input type='text' name='familyNameKana' value='<?php echo htmlspecialchars($userData['family_name_kana'], ENT_QUOTES); ?>'>
+        <input type='text' name='familyNameKana' value='<?php
+          if (isset($_POST['familyNameKana'])){
+            // update_confirm.phpから遷移した場合
+            echo htmlspecialchars($_POST['familyNameKana'], ENT_QUOTES);
+          } elseif (isset($_GET['id'])) {
+            // list.phpから遷移した場合
+            echo htmlspecialchars($userData['family_name_kana'], ENT_QUOTES);
+          } else {
+            // その他の場合
+            echo '';
+          }?>'>
 
         <label for='last_name_kana'>カナ(名)</label>
-        <input type='text' name='lastNameKana' value='<?php echo htmlspecialchars($userData['last_name_kana'], ENT_QUOTES); ?>'>
+        <input type='text' name='lastNameKana' value='<?php
+          if (isset($_POST['lastName'])){
+            // update_confirm.phpから遷移した場合
+            echo htmlspecialchars($_POST['lastNameKana'], ENT_QUOTES);
+          } elseif (isset($_GET['id'])) {
+            // list.phpから遷移した場合
+            echo htmlspecialchars($userData['last_name_kana'], ENT_QUOTES);
+          } else {
+            // その他の場合
+            echo '';
+          }?>'>
 
         <label for='mail'>メールアドレス</label>
-        <input type='text' name='mail' value='<?php echo htmlspecialchars($userData['mail'], ENT_QUOTES); ?>'>
+        <input type='text' name='mail' value='<?php
+          if (isset($_POST['mail'])){
+            // update_confirm.phpから遷移した場合
+            echo htmlspecialchars($_POST['mail'], ENT_QUOTES);
+          } elseif (isset($_GET['id'])) {
+            // list.phpから遷移した場合
+            echo htmlspecialchars($userData['mail'], ENT_QUOTES);
+          } else {
+            // その他の場合
+            echo '';
+          }?>'>
 
         <label for='password'>パスワード:</label>
-        <input type='password' name='password' value=''>
+        <input type='password' name='password' value='<?php
+          if (isset($_POST['password'])){
+            // update_confirm.phpから遷移した場合
+            echo htmlspecialchars($_POST['password'], ENT_QUOTES);
+          } elseif (isset($_GET['id'])) {
+            // list.phpから遷移した場合
+            echo htmlspecialchars($userData['password'], ENT_QUOTES);
+          } else {
+            // その他の場合
+            echo '';
+          }?>'>
 
         <label>性別</label>
-        <label><input type='radio' name='gender' value='0' <?php echo ($userData['gender'] == 0 ? 'checked' : ''); ?>> 男性</label>
-        <label><input type='radio' name='gender' value='1' <?php echo ($userData['gender'] == 1 ? 'checked' : ''); ?>> 女性</label>
+        <label><input type='radio' name='gender' value='0' <?php echo (isset($_POST['gender']) && $_POST['gender'] == 0 ? 'checked' : ($userData['gender'] == 0 ? 'checked' : '')); ?>> 男性</label>
+        <label><input type='radio' name='gender' value='1' <?php echo (isset($_POST['gender']) && $_POST['gender'] == 1 ? 'checked' : ($userData['gender'] == 1 ? 'checked' : '')); ?>> 女性</label>
+
 
         <label for='postal_code'>郵便番号:</label>
-        <input type='text' name='postalCode' value='<?php echo htmlspecialchars($userData['postal_code'], ENT_QUOTES); ?>'>
+        <input type='text' name='postalCode' value='<?php
+          if (isset($_POST['password'])){
+            // update_confirm.phpから遷移した場合
+            echo htmlspecialchars($_POST['postalCode'], ENT_QUOTES);
+          } elseif (isset($_GET['id'])) {
+            // list.phpから遷移した場合
+            echo htmlspecialchars($userData['postal_code'], ENT_QUOTES);
+          } else {
+            // その他の場合
+            echo '';
+          }?>'>
 
         <label for='prefecture'>都道府県:</label>
         <select name='prefecture'>
@@ -106,21 +177,40 @@
               '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県'
             );
             foreach ($prefectures as $prefecture) {
-              echo "<option value='{$prefecture}' " . ($userData['prefecture'] == $prefecture ? 'selected' : '') . ">{$prefecture}</option>";
+              echo "<option value='{$prefecture}' " . (isset($_POST['prefecture']) && $_POST['prefecture'] == $prefecture ? 'selected' : ($userData['prefecture'] == $prefecture ? 'selected' : '')) . ">{$prefecture}</option>";
             }
           ?>
         </select>
 
         <label for='address1'>住所1:</label>
-        <input type='text' name='address1' value='<?php echo htmlspecialchars($userData['address_1'], ENT_QUOTES); ?>'>
-
+        <input type='text' name='address1'  value='<?php
+          if (isset($_POST['password'])){
+            // update_confirm.phpから遷移した場合
+            echo htmlspecialchars($_POST['address1'], ENT_QUOTES);
+          } elseif (isset($_GET['id'])) {
+            // list.phpから遷移した場合
+            echo htmlspecialchars($userData['address1'], ENT_QUOTES);
+          } else {
+            // その他の場合
+            echo '';
+          }?>'>
         <label for='address2'>住所2:</label>
-        <input type='text' name='address2' value='<?php echo htmlspecialchars($userData['address_2'], ENT_QUOTES); ?>'>
+        <input type='text' name='address2'  value='<?php
+          if (isset($_POST['password'])){
+            // update_confirm.phpから遷移した場合
+            echo htmlspecialchars($_POST['address2'], ENT_QUOTES);
+          } elseif (isset($_GET['id'])) {
+            // list.phpから遷移した場合
+            echo htmlspecialchars($userData['address2'], ENT_QUOTES);
+          } else {
+            // その他の場合
+            echo '';
+          }?>'>
 
         <label for='authority'>アカウント権限</label>
         <select name='authority'>
-            <option value='0' <?php echo ($userData['authority'] == 0 ? 'selected' : ''); ?>>一般</option>
-            <option value='1' <?php echo ($userData['authority'] == 1 ? 'selected' : ''); ?>>管理者</option>
+            <option value='0' <?php echo (isset($_POST['authority']) && $_POST['authority'] == 0 ? 'selected' : ($userData['authority'] == 0 ? 'selected' : '')); ?>>一般</option>
+            <option value='1' <?php echo (isset($_POST['authority']) && $_POST['authority'] == 1 ? 'selected' : ($userData['authority'] == 1 ? 'selected' : '')); ?>>管理者</option>
         </select>
 
         <input type='submit' value='確認する'>

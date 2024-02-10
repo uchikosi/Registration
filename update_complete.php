@@ -12,6 +12,7 @@ var_dump($_POST);
 // 現在の日時を取得
 $updateTime = date("Y-m-d H:i:s");
 
+
 try {
     // データベースへの接続
     $pdo = new PDO("mysql:host={$servername};dbname={$dbname}", $username, $password);
@@ -24,6 +25,8 @@ try {
     $familyNameKana = $_POST['familyNameKana'];
     $lastNameKana = $_POST['lastNameKana'];
     $mail = $_POST['mail'];
+    // パスワードをハッシュ化
+    $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $gender = $_POST['gender'];
     $postalCode = $_POST['postalCode'];
     $prefecture = $_POST['prefecture'];
@@ -36,7 +39,7 @@ try {
     var_dump($familyName);
 
     // UPDATE文を準備
-    $stmt = $pdo->prepare("UPDATE users SET family_name = :familyName, last_name = :lastName, family_name_kana = :familyNameKana, last_name_kana = :lastNameKana, mail = :mail, gender = :gender, postal_code = :postalCode, prefecture = :prefecture, address_1 = :address1, address_2 = :address2, authority = :authority, update_time = :updateTime WHERE id = :userId");
+    $stmt = $pdo->prepare("UPDATE users SET family_name = :familyName, last_name = :lastName, family_name_kana = :familyNameKana, last_name_kana = :lastNameKana, mail = :mail, password = :hashedPassword, gender = :gender, postal_code = :postalCode, prefecture = :prefecture, address_1 = :address1, address_2 = :address2, authority = :authority, update_time = :updateTime WHERE id = :userId");
     // 他のカラムも更新する場合はここに追加
 
     // バインドパラメータを設定
@@ -46,6 +49,7 @@ try {
     $stmt->bindParam(':familyNameKana', $familyNameKana, PDO::PARAM_STR);
     $stmt->bindParam(':lastNameKana', $lastNameKana, PDO::PARAM_STR);
     $stmt->bindParam(':mail', $mail, PDO::PARAM_STR);
+    $stmt->bindParam(':hashedPassword', $hashedPassword, PDO::PARAM_STR);
     $stmt->bindParam(':gender', $gender, PDO::PARAM_STR);
     $stmt->bindParam(':postalCode', $postalCode, PDO::PARAM_STR);
     $stmt->bindParam(':prefecture', $prefecture, PDO::PARAM_STR);
