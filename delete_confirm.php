@@ -20,17 +20,17 @@ $userId = $_GET['id'];
       margin:  20px;
     }
     #deleteconfirm {
-    padding: 10px;              /* 余白指定 */
-    background-color:  #ddd;    /* 背景色指定 */
-    height: 100px;              /* 高さ指定 */
-    text-align:  center;        /* 中央寄せ */
+      padding: 10px;              /* 余白指定 */
+      background-color:  #ddd;    /* 背景色指定 */
+      height: 100px;              /* 高さ指定 */
+      text-align:  center;        /* 中央寄せ */
     }
    .button-container{
-    padding: 10px;              /* 余白指定 */
-    height: 50px;              /* 高さ指定 */
-    text-align:  center;        /* 中央寄せ */
-    display: flex;
-    justify-content:center
+      padding: 10px;              /* 余白指定 */
+      height: 50px;              /* 高さ指定 */
+      text-align:  center;        /* 中央寄せ */
+      display: flex;
+      justify-content:center
     }
     #deleteBack {
       padding: 20px;

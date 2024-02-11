@@ -32,16 +32,16 @@ $authority = ($_POST['authority'] == '0') ? '一般' : '管理者';
       margin: 10px;
     }
     table {
-    width: 200px;               /* 幅指定 */
-    height: 90px;               /* 高さ指定 */
-    margin:  0 auto;            /* 中央寄せ */
+      width: 200px;               /* 幅指定 */
+      height: 90px;               /* 高さ指定 */
+      margin:  0 auto;            /* 中央寄せ */
     }
     .button-container{
-    padding: 10px;              /* 余白指定 */
-    height: 50px;              /* 高さ指定 */
-    text-align:  center;        /* 中央寄せ */
-    display: flex;
-    justify-content:center
+      padding: 10px;              /* 余白指定 */
+      height: 50px;              /* 高さ指定 */
+      text-align:  center;        /* 中央寄せ */
+      display: flex;
+      justify-content:center
     }
     #registBack {
       padding: 20px;

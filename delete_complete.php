@@ -19,13 +19,12 @@
 
   // データベースの更新処理
   try {
-      // delete_flagカラムを1に更新するSQLクエリを準備
-      $stmt = $pdo->prepare("UPDATE users SET delete_flag = 1 WHERE id = :id");
-      $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
-      $stmt->execute();
+    // delete_flagカラムを1に更新するSQLクエリを準備
+    $stmt = $pdo->prepare("UPDATE users SET delete_flag = 1 WHERE id = :id");
+    $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
+    $stmt->execute();
 
-      $delete_complete = "削除が完了しました。";
-
+    $delete_complete = "削除が完了しました。";
   } catch (PDOException $e) {
       $delete_failure = "削除に失敗しました: " . $e->getMessage();
   }
@@ -47,10 +46,10 @@
       margin:  20px;
     }
     #databasedeleteResults {
-    padding: 10px;              /* 余白指定 */
-    background-color:  #ddd;    /* 背景色指定 */
-    height: 150px;              /* 高さ指定 */
-    text-align:  center;        /* 中央寄せ */
+      padding: 10px;              /* 余白指定 */
+      background-color:  #ddd;    /* 背景色指定 */
+      height: 150px;              /* 高さ指定 */
+      text-align:  center;        /* 中央寄せ */
     }
     #topBack {
       text-align: center;
@@ -106,6 +105,5 @@
   <footer>
     <p>Copytifht D.I.Worksl D.I.blog is the one which provides A to Z about programming</p>
   </footer>
-
 </body>
 </html>

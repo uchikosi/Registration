@@ -95,23 +95,23 @@ try {
     <div>
       <h1 id="databaseRegistrationResults">
         <?php
-        if (isset($success)) {
-              echo $success;// 成功メッセージ
-              echo "<br>";
+          if (isset($success)) {
+            echo $success;// 成功メッセージ
+            echo "<br>";
           }
 
           if (isset($failure)) {
-              echo $failure;// 失敗メッセージ
-              echo "<br>";
+            echo $failure;// 失敗メッセージ
+            echo "<br>";
           }
         ?>
       </h1>
     </div>
 
     <div>
-        <p>
-            <a href="http://localhost:8888/Registration/index.php" id = "topBack" >TOPページへ戻る</a>
-        </p>
+      <p>
+        <a href="http://localhost:8888/Registration/index.php" id = "topBack" >TOPページへ戻る</a>
+      </p>
     </div>
   </main>
   <footer>

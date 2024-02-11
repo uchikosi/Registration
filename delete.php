@@ -75,58 +75,58 @@
     <h1>アカウント削除</h1>
     <div id="">
       <table>
-          <tr>
-            <td>名前（姓）</td>
-            <td><?php echo $user['family_name']; ?></td>
-          </tr>
-          <tr>
-              <td>名前（名）</td>
-              <td><?php echo $user['last_name']; ?></td>
-          </tr>
-          <tr>
-            <td>カナ（姓）</td>
-            <td><?php echo $user['family_name_kana']; ?></td>
-          </tr>
-          <tr>
-            <td>カナ（名）</td>
-            <td><?php echo $user['last_name_kana']; ?></td>
-          </tr>
-          <tr>
-            <td>メールアドレス</td>
-            <td><?php echo $user['mail']; ?></td>
-          </tr>
-          <tr>
-            <td>パスワード</td>
-            <td><?php echo str_repeat("●", min(strlen($user['password']), 10)); ?></td>
-          </tr>
-          <tr>
-            <td>性別</td>
-            <td><?php echo ($user['gender'] == 0 ? '男性' : '女性'); ?></td>
-          </tr>
-          <tr>
-            <td>郵便番号</td>
-            <td><?php echo $user['postal_code']; ?></td>
-          </tr>
-          <tr>
-            <td>住所（都道府県）</td>
-            <td><?php echo $user['prefecture']; ?></td>
-          </tr>
-          <tr>
-            <td>住所（市区町村）</td>
-            <td><?php echo $user['address_1']; ?></td>
-          </tr>
-          <tr>
-            <td>住所（番地）</td>
-            <td><?php echo $user['address_2']; ?></td>
-          </tr>
-          <tr>
-            <td>アカウント権限</td>
-            <td><?php echo ($user['authority'] == 0 ? '一般' : '管理者'); ?></td>
-          </tr>
-          <tr>
-            <td>登録日時</td>
-            <td><?php echo $user['registered_time']; ?></td>
-          </tr>
+        <tr>
+          <td>名前（姓）</td>
+          <td><?php echo $user['family_name']; ?></td>
+        </tr>
+        <tr>
+            <td>名前（名）</td>
+            <td><?php echo $user['last_name']; ?></td>
+        </tr>
+        <tr>
+          <td>カナ（姓）</td>
+          <td><?php echo $user['family_name_kana']; ?></td>
+        </tr>
+        <tr>
+          <td>カナ（名）</td>
+          <td><?php echo $user['last_name_kana']; ?></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><?php echo $user['mail']; ?></td>
+        </tr>
+        <tr>
+          <td>パスワード</td>
+          <td><?php echo str_repeat("●", min(strlen($user['password']), 10)); ?></td>
+        </tr>
+        <tr>
+          <td>性別</td>
+          <td><?php echo ($user['gender'] == 0 ? '男性' : '女性'); ?></td>
+        </tr>
+        <tr>
+          <td>郵便番号</td>
+          <td><?php echo $user['postal_code']; ?></td>
+        </tr>
+        <tr>
+          <td>住所（都道府県）</td>
+          <td><?php echo $user['prefecture']; ?></td>
+        </tr>
+        <tr>
+          <td>住所（市区町村）</td>
+          <td><?php echo $user['address_1']; ?></td>
+        </tr>
+        <tr>
+          <td>住所（番地）</td>
+          <td><?php echo $user['address_2']; ?></td>
+        </tr>
+        <tr>
+          <td>アカウント権限</td>
+          <td><?php echo ($user['authority'] == 0 ? '一般' : '管理者'); ?></td>
+        </tr>
+        <tr>
+          <td>登録日時</td>
+          <td><?php echo $user['registered_time']; ?></td>
+        </tr>
       </table>
     </div>
     <form action="delete_confirm.php" method="GET" id = "confirm">
@@ -138,6 +138,5 @@
   <footer>
     <p>Copytifht D.I.Worksl D.I.blog is the one which provides A to Z about programming</p>
   </footer>
-
 </body>
 </html>
