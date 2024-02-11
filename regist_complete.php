@@ -4,7 +4,7 @@ $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
 // 現在の日時を取得
 $registeredTime = date("Y-m-d H:i:s");
 // パラメータが0の場合は「有効」で1の場合は「無効」
-$delete_flag = "1";
+$delete_flag = "0";
 
 // try ブロック:データベースへの登録処理が try内で実行されます。この部分でエラーが発生した場合は、catch ブロックに処理が移ります。
 try {
@@ -69,7 +69,7 @@ try {
       border: 1px solid #ccc;
       background-color: #f8f8f8;
     }
-    </style>
+  </style>
 </head>
 <body>
   <header>
