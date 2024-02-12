@@ -1,4 +1,3 @@
-<!-- login.php -->
 <?php
 session_start();
 
@@ -50,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     } else {
         // ユーザーが見つからない場合
-        $error = "メールアドレスまたはパスワードが正しくありません。";
+        $error = "エラーが発生したためログイン情報を取得できません。";
     }
 }
 ?>
