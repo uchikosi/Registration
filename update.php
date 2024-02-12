@@ -36,9 +36,18 @@
   } else {
     // セッションにフォームの値がない場合、デフォルト値を設定する
     $formValues = array(
-        'familyName' => '',
-        'lastName' => '',
-        // 他のフォームも同様に設定
+        // 'familyName' => '',
+        // 'lastName' => '',
+        // 'familyNameKana' = '',
+        // 'lastNameKana' = '',
+        // 'mail' = ''
+        // 'password' = '',
+        // 'gender' = '',
+        // 'postalCode' = '',
+        // 'prefecture' = '',
+        // 'address1' = '',
+        // 'address2' = '',
+        // 'authority' = '';
     );
   }
 ?>

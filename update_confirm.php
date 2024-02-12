@@ -97,7 +97,7 @@ $_SESSION['form_values'] = $_POST;
         </tr>
         <tr>
           <td>メールアドレス</td>
-          <td><?php echo $newMail; ?></td>
+          <td class = "longText"><?php echo $newMail; ?></td>
         </tr>
         <tr>
           <td>パスワード</td>
@@ -117,7 +117,7 @@ $_SESSION['form_values'] = $_POST;
         </tr>
         <tr>
           <td>住所（市区町村）</td>
-          <td><?php echo $newAddress1 ; ?></td>
+          <td class = "longText"><?php echo $newAddress1 ; ?></td>
         </tr>
         <tr>
           <td>住所（番地）</td>
@@ -173,5 +173,15 @@ $_SESSION['form_values'] = $_POST;
     <p>Copytifht D.I.Worksl D.I.blog is the one which provides A to Z about programming</p>
   </footer>
 
+  <script>
+    var longTextElements = document.getElementsByClassName('longText');
+    for (var i = 0; i < longTextElements.length; i++) {
+      var element = longTextElements[i];
+      var text = element.innerText;
+      if (text.length > 50) {
+          element.innerHTML = text.replace(/(.{50})/g, '$1<br>');
+      }
+    }
+  </script>
 </body>
 </html>
