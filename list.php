@@ -15,8 +15,19 @@ try {
 
 // データベースからユーザー情報を取得（idの大きい順に並べる）
 $sql = "SELECT * FROM users ORDER BY id DESC";
-$result = $pdo->query($sql);å
+$result = $pdo->query($sql);
+
+session_start();
+// もしログインしていなければ、ログインページにリダイレクト
+if (!isset($_SESSION['mail'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// ユーザーの権限を取得
+$role = $_SESSION['role'] ?? null;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -45,6 +56,14 @@ $result = $pdo->query($sql);å
       <a href="http://localhost:8888/Registration/index.php">
         <img src="img/diblog_logo.jpg" id="logo">
       </a>
+      <p>ようこそ ID  <?php echo $user_id; ?>様</p>
+      <p> <?php echo $_SESSION['mail']; ?></p>
+      <?php if ($role === '一般'): ?>
+        <p>このアカウント権限は一般です</p>
+      <?php elseif ($role === '管理者'): ?>
+        <p>このアカウント権限は管理者です</p>
+      <?php endif; ?>
+      <p><a href="logout.php">Logout</a></p>
     </div>
 
     <div id="menu">
@@ -75,8 +94,10 @@ $result = $pdo->query($sql);å
             <th>削除フラグ</th>
             <th>登録日時</th>
             <th>更新日時</th>
-            <th>更新</th>
-            <th>削除</th>
+            <?php if ($role === '管理者'): ?>
+              <th>更新</th>
+              <th>削除</th>
+            <?php endif; ?>
           </tr>
 
           <?php
@@ -106,8 +127,10 @@ $result = $pdo->query($sql);å
                   echo "更新なし";
               }
               echo "</td>";
-              echo "<td><a href='update.php?id={$row['id']}'>更新</a></td>";
-              echo "<td><a href='delete.php?id={$row['id']}'>削除</a></td>";
+              if ($role === '管理者'):
+                echo "<td><a href='update.php?id={$row['id']}'>更新</a></td>";
+                echo "<td><a href='delete.php?id={$row['id']}'>削除</a></td>";
+              endif;
               echo "</tr>";
             }
           ?>

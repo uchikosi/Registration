@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+// もしログインしていなければ、ログインページにリダイレクト
+if (!isset($_SESSION['mail'])) {
+    header("Location: login.php");
+    exit();
+} else {
+    // ユーザーの権限を取得
+    $role = $_SESSION['role'] ?? null;
+    $user_id = $_SESSION['user_id'] ?? null; // ユーザーIDを取得
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -11,6 +25,14 @@
       <a href="http://localhost:8888/Registration/index.php">
         <img src="img/diblog_logo.jpg" id="logo">
       </a>
+      <p>ようこそ ID  <?php echo $user_id; ?>様</p>
+      <p> <?php echo $_SESSION['mail']; ?></p>
+      <?php if ($role === '一般'): ?>
+        <p>このアカウント権限は一般です</p>
+      <?php elseif ($role === '管理者'): ?>
+        <p>このアカウント権限は管理者です</p>
+      <?php endif; ?>
+      <p><a href="logout.php">Logout</a></p>
     </div>
 
     <div id="menu">
@@ -18,8 +40,10 @@
         <li><a href="http://localhost:8888/Registration/index.php">トップ</a></li>
         <li>プロフィール</li>
         <li>D.I.Blogについて</li>
-        <li> <a href="http://localhost:8888/Registration/regist.php">登録ホーム</a></li>
-        <li> <a href="http://localhost:8888/Registration/list.php">アカウント一覧</a></li>
+        <?php if ($role === '管理者'): ?>
+          <li><a href="http://localhost:8888/Registration/regist.php">登録ホーム</a></li>
+          <li><a href="http://localhost:8888/Registration/list.php">アカウント一覧</a></li>
+        <?php endif; ?>
         <li>問い合わせ</li>
         <li>その他</li>
       </ul>
