@@ -29,6 +29,16 @@ if (isset($_POST['password']) && strlen($_POST['password']) > 10) {
 
 // 入力された値をセッションに保存する
 $_SESSION['form_values'] = $_POST;
+
+session_start();
+  // もしログインしていなければ、ログインページにリダイレクト
+  if (!isset($_SESSION['mail'])) {
+    header("Location: login.php");
+    exit();
+  }
+
+  // ユーザーの権限を取得
+  $role = $_SESSION['role'] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +72,14 @@ $_SESSION['form_values'] = $_POST;
       <a href="http://localhost:8888/Registration/index.php">
         <img src="img/diblog_logo.jpg" id="logo">
       </a>
+      <p>ようこそ ID  <?php echo $user_id; ?>様</p>
+      <p> <?php echo $_SESSION['mail']; ?></p>
+      <?php if ($role === '一般'): ?>
+        <p>このアカウント権限は一般です</p>
+      <?php elseif ($role === '管理者'): ?>
+        <p>このアカウント権限は管理者です</p>
+      <?php endif; ?>
+      <p><a href="logout.php">Logout</a></p>
     </div>
 
     <div id="menu">

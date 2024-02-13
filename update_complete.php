@@ -75,6 +75,15 @@ try {
   // PDOExceptionが発生した場合にキャッチされる部分です。これは、データベースへの接続やクエリ実行などで発生する可能性のある例外です。エラーメッセージが表示されます。
   $error = "データベースへの更新が失敗しました。";
 }
+
+  // もしログインしていなければ、ログインページにリダイレクト
+  if (!isset($_SESSION['mail'])) {
+    header("Location: login.php");
+    exit();
+  }
+
+  // ユーザーの権限を取得
+  $role = $_SESSION['role'] ?? null;
 ?>
 
 
@@ -109,9 +118,17 @@ try {
 <body>
   <header>
     <div>
-      <a href="http://localhost:8888/Registration/regist.php">
+      <a href="http://localhost:8888/Registration/index.php">
         <img src="img/diblog_logo.jpg" id="logo">
       </a>
+      <p>ようこそ ID  <?php echo $user_id; ?>様</p>
+      <p> <?php echo $_SESSION['mail']; ?></p>
+      <?php if ($role === '一般'): ?>
+        <p>このアカウント権限は一般です</p>
+      <?php elseif ($role === '管理者'): ?>
+        <p>このアカウント権限は管理者です</p>
+      <?php endif; ?>
+      <p><a href="logout.php">Logout</a></p>
     </div>
 
     <div id="menu">

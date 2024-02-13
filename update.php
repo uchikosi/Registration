@@ -51,6 +51,16 @@
     );
   }
 
+  session_start();
+  // もしログインしていなければ、ログインページにリダイレクト
+  if (!isset($_SESSION['mail'])) {
+    header("Location: login.php");
+    exit();
+  }
+
+  // ユーザーの権限を取得
+  $role = $_SESSION['role'] ?? null;
+
 ?>
 
 <!DOCTYPE html>
