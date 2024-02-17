@@ -17,9 +17,8 @@ session_start();
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="css/shareStyle.css">
-  <title>アカウント削除</title>
-  <script type="text/javascript" src="js/Delete/script.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/shareStyle.css">
+  <title>アカウント削除確認</title>
   <style>
     div {
       text-align: center; /* 中央寄せ */

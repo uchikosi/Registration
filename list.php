@@ -112,14 +112,6 @@
           </select><br>
         </div>
 
-        <div>
-          <!-- <label for="authority">アカウント権限:</label>
-          <select id="authority" name="authority">
-            <option value="0" selected>一般</option>
-            <option value="1">管理者</option>
-          </select><br> -->
-        </div>
-
         <button type="submit">検索</button>
       </form>
     </div>
@@ -228,8 +220,8 @@
               }
               echo "</td>";
               if ($role === '管理者'):
-                echo "<td><a href='update.php?id={$row['id']}'>更新</a></td>";
-                echo "<td><a href='delete.php?id={$row['id']}'>削除</a></td>";
+                echo "<td><a href='update/update.php?id={$row['id']}'>更新</a></td>";
+                echo "<td><a href='delete/delete.php?id={$row['id']}'>削除</a></td>";
               endif;
               echo "</tr>";
             }

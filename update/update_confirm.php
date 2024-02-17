@@ -45,9 +45,8 @@ session_start();
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="css/shareStyle.css">
-  <title>アカウント更新</title>
-  <script type="text/javascript" src="js/Update/script.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/shareStyle.css">
+  <title>アカウント更新確認</title>
   <style>
     main {
       margin: 10px;

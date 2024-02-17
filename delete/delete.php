@@ -44,9 +44,9 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="css/shareStyle.css">
+  <link rel="stylesheet" type="text/css" href="../css/shareStyle.css">
   <title>アカウント削除</title>
-  <script type="text/javascript" src="js/Delete/script.js"></script>
+  <script type="text/javascript" src="../js/Delete/script.js"></script>
   <style>
     table{
       margin: 0 auto;

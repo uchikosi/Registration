@@ -24,10 +24,10 @@ unset($_SESSION['failure']);
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="css/shareStyle.css">
+  <link rel="stylesheet" type="text/css" href="../css/shareStyle.css">
   <title>アカウント完了画面</title>
   <style>
-    div {
+    .message {
       text-align: center; /* 中央寄せ */
       margin:  20px;
     }
@@ -80,7 +80,7 @@ unset($_SESSION['failure']);
   </header>
   <main>
     <h3>アカウント更新完了画面</h3>
-    <div>
+    <div id=message>
       <h1 id="databasedeleteupdate">
         <?php if ($success): ?>
             <p style="color: green;"><?php echo $success; ?></p>
