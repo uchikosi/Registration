@@ -12,7 +12,6 @@ $dbname = "DIBlog";
 // 現在の日時を取得
 $updateTime = date("Y-m-d H:i:s");
 
-
 try {
   // データベースへの接続
   $pdo = new PDO("mysql:host={$servername};dbname={$dbname}", $username, $password);
@@ -67,10 +66,36 @@ try {
   if ($update) {
     // データベースへの登録が成功した場合に実行される。$result が true の場合メッセージが出力されます。
     $success = "アカウントの更新が完了しました。";
-  } else {
+
+    // 成功のメッセージをセッションに保存
+    $_SESSION['success'] = $success;
+
+    // 更新後にセッション情報を再取得して更新する
+    // ユーザーIDをセッションから取得
+    $user_id = $_SESSION['user_id'];
+
+    // データベースから更新後のユーザー情報を取得
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE id = :user_id");
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $updatedUserInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // セッションに更新後のユーザー情報を保存
+    $_SESSION['mail'] = $updatedUserInfo['mail'];
+    $_SESSION['role'] = ($updatedUserInfo['authority'] == 1) ? '管理者' : '一般';
+    // 他の更新された情報も同様に保存する
+
+    // セッション情報の更新が完了したら、リダイレクトなどの処理を行う
+    header("Location:update_complete_display.php");
+    exit();
+} else {
     // データベースへの登録が失敗した場合に実行される。この場合、$stmt->errorInfo() を使用してエラー情報を取得し、エラーコードとエラーメッセージを表示します。
     $failure = "エラーが発生したためアカウント更新できません。";
-  }
+
+    // 失敗のメッセージをセッションに保存
+    $_SESSION['failure'] = $failure;
+}
+
 } catch (PDOException $e) {
   // PDOExceptionが発生した場合にキャッチされる部分です。これは、データベースへの接続やクエリ実行などで発生する可能性のある例外です。エラーメッセージが表示されます。
   $error = "データベースへの更新が失敗しました。";
@@ -93,82 +118,7 @@ try {
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="css/shareStyle.css">
   <title>アカウント完了画面</title>
-  <style>
-    div {
-      text-align: center; /* 中央寄せ */
-      margin:  20px;
-    }
-    h3 {
-      margin:  20px;
-    }
-    #databasedeleteupdate {
-      padding: 10px;              /* 余白指定 */
-      background-color:  #ddd;    /* 背景色指定 */
-      height: 150px;              /* 高さ指定 */
-      text-align:  center;        /* 中央寄せ */
-    }
-    #topBack {
-      text-align: center;
-      padding: 20px;
-      border: 1px solid #ccc;
-      background-color: #f8f8f8;
-    }
-  </style>
 </head>
 <body>
-  <header>
-    <div>
-      <a href="http://localhost:8888/Registration/index.php">
-        <img src="img/diblog_logo.jpg" id="logo">
-      </a>
-      <p>ようこそ ID  <?php echo $user_id; ?>様</p>
-      <p> <?php echo $_SESSION['mail']; ?></p>
-      <?php if ($role === '一般'): ?>
-        <p>このアカウント権限は一般です</p>
-      <?php elseif ($role === '管理者'): ?>
-        <p>このアカウント権限は管理者です</p>
-      <?php endif; ?>
-      <p><a href="logout.php">Logout</a></p>
-    </div>
-
-    <div id="menu">
-      <ul>
-        <li><a href="http://localhost:8888/Registration/regist.php">トップ</a></li>
-        <li>プロフィール</li>
-        <li>D.I.Blogについて</li>
-        <li> <a href="http://localhost:8888/Registration/regist_confirm.php">登録ホーム</a></li>
-        <li> <a href="http://localhost:8888/Registration/list.php">アカウント一覧</a></li>
-        <li>問い合わせ</li>
-        <li>その他</li>
-      </ul>
-    </div>
-  </header>
-  <main>
-    <h3>アカウント削除確認画面</h3>
-    <div>
-      <h1 id="databasedeleteupdate">
-        <?php
-        if (isset($success)) {
-          echo $success;// 成功メッセージ
-          echo "<br>";
-        }
-        if (isset($error)) {
-          echo $error;// 失敗メッセージ
-          echo "<br>";
-        }
-        ?>
-      </h1>
-    </div>
-
-    <div>
-      <p>
-        <a href="http://localhost:8888/Registration/index.php" id = "topBack" >TOPページへ戻る</a>
-      </p>
-    </div>
-  </main>
-  <footer>
-    <p>Copytifht D.I.Worksl D.I.blog is the one which provides A to Z about programming</p>
-  </footer>
-
 </body>
 </html>

@@ -98,19 +98,26 @@
         <div>
           <label for="mail">メールアドレス:</label>
           <input type="text" id="mail" name="mail" value=""><br>
-          <label for="gender">性別:</label>
-          <input type="radio" id="male" name="gender" value="0" checked>
+
+          <input type="radio" id="male" name="gender" value="0">
           <label for="male">男</label>
           <input type="radio" id="female" name="gender" value="1">
           <label for="female">女</label><br>
+
+          <label for="authority">アカウント権限:</label>
+          <select id="authority" name="authority">
+            <option value="" selected>全て</option>
+            <option value="0">一般</option>
+            <option value="1">管理者</option>
+          </select><br>
         </div>
 
         <div>
-          <label for="authority">アカウント権限:</label>
+          <!-- <label for="authority">アカウント権限:</label>
           <select id="authority" name="authority">
             <option value="0" selected>一般</option>
             <option value="1">管理者</option>
-          </select><br>
+          </select><br> -->
         </div>
 
         <button type="submit">検索</button>
@@ -146,12 +153,15 @@
       if (!empty($email)) {
         $sql .= " AND mail LIKE '%$email%'";
       }
-      if (!empty($gender)) {
-        $sql .= " AND gender = '$gender'";
-      }
-      if (!empty($authority)) {
+      if ($gender !== "") {
+  $sql .= " AND gender = '$gender'";
+}
+
+      // アカウント権限が「一般」の場合も条件に追加
+      if ($authority !== "") {
         $sql .= " AND authority = '$authority'";
       }
+
       // IDを降順で並び替える
       $sql .= " ORDER BY id DESC";
     }
